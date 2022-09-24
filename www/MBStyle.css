@@ -1,0 +1,40 @@
+/*旧版本浏览器兼容*/
+header, section, footer, aside, nav, main, article, figure {
+    display: block; 
+}
+
+/*超链接*/
+a {
+    color:red;
+}
+
+/*表格*/
+.MBTable {
+    border-collapse:collapse;
+    border: 0px;
+}
+
+.MBTable th {
+    border: 1px solid rgb(204, 204, 204);
+    padding: 3px;
+    text-align: center;
+    font-family: "微软雅黑";
+    font-size: 16px;
+    font-weight: bold;
+    color: #255E95;
+    background-color:#E9FAFF;
+}
+
+.MBTable td {
+    border: 1px solid rgb(204, 204, 204);
+    padding: 3px;
+    font-family: "微软雅黑";
+    font-size: 16px;
+    color: #000000;
+    background-color:#FFFFFF;
+}
+
+/*通用*/
+.text-center {
+    text-align: center;
+}
