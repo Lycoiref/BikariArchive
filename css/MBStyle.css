@@ -5,27 +5,39 @@ header, section, footer, aside, nav, main, article, figure {
     display: block; 
 }
 
+body {
+    font-family: 'Microsoft Yahei';
+}
+
 /*超链接*/
 a {
     color:red;
 }
 
+/*页眉*/
 header {
     margin: -8px;
-    width: 100%;
     height: 64px;
     background-color:rgb(240, 237, 94);
 }
 
 /*页眉标题*/
 #BikariTitle {
-    margin: auto;
+    float: left;
     padding: 10px;
     font-size: 32px;
-    text-align: left;
     color:rgb(82, 81, 30);
 }
 
+/*页眉标题*/
+#WelcomeText {
+    position: relative;
+    top: 36px;
+    float: right;
+    vertical-align: bottom;
+    font-size: 16px;
+    color:rgb(82, 81, 30);
+}
 /*表格*/
 .MBTable {
     border-collapse:collapse;
