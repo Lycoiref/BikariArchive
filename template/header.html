@@ -1,5 +1,5 @@
 <!--页眉 -->
-<header>
+<header class="Header">
     <div id="BikariTitle">微光茶馆-Bikari</div>
 </header>
 
@@ -8,7 +8,24 @@
     <ul class="demo-vertical">
         <li><a href="../../index.html">主页</a></li>
         <li><a href="../../catalogue.html">目录</a></li>
-        <li><a href="javascript::void(0)">设定</a></li>
+        <li><a href="javascript::void(0)">情报</a></li>
         <li><a href="javascript::void(0)">更多</a></li>
     <ul>
 </div>
+
+<script>
+    //侧边栏
+    let header = document.querySelector(".Header");
+    let sidebar = document.querySelector(".SideBar");
+
+    document.addEventListener("scroll", function () {
+        let mainHeight = header.scrollHeight - 8;
+        if (window.pageYOffset > mainHeight) {
+            sidebar.style.position = "fixed";
+            sidebar.style.top = "0px";
+        } else {
+            sidebar.style.position = "absolute";
+            sidebar.style.top = mainHeight + "px";
+        }
+    })
+</script>

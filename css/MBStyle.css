@@ -21,8 +21,6 @@ a {
 
 /*页眉*/
 header {
-    position: sticky;
-    top: 0;
     margin: -8px;
     height: 64px;
     background-color: rgb(241, 240, 161);
@@ -77,11 +75,10 @@ div.SideBar ul.demo-vertical a.active {
 
 /* 正文内容 */
 div.MainContent {
-    float: left;
-    margin: 0 0 0 16px;
+    margin: 0 0 0 300px;
     padding: 32px 0 0 0;
     border: 0;
-    width: 900px;
+    width: min(calc(100vw - 320px), 900px);
     background: transparent;
 }
 
@@ -114,6 +111,9 @@ div.MainContent li.Chapter {
 div.MainContent p {
     font-size: 16px;
     text-indent: 32px;
+
+    margin: 0;
+    line-height: 32px;
 }
 
 /* ---------------------------------------------------------------- */
@@ -121,11 +121,11 @@ div.MainContent p {
 div.MainContent div.ChapterWrapTable {
     float: right;
     margin: 12px 0;
-    width: 15%;
 }
 
 div.MainContent button#LastChapter {
-    float: left;
+    float: right;
+    margin-right: 32px;
 }
 
 div.MainContent button#NextChapter {
