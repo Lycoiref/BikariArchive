@@ -19,12 +19,12 @@ Volume = [
 
 var index = 0;
 
-//引入部分模板
-$(document).ready(function() {
-    $("#header").load("header.html");
-})
-
 window.onload = function Shokika () {
+    //引入部分模板
+    $(document).ready(function() {
+        $("#header").load("header.html");
+    })
+    
     //获取章节序号
     var path = window.location.pathname;
     var page = path.split("/").pop();
