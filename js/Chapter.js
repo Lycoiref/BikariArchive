@@ -20,25 +20,20 @@ Volume = [
 //章节序号
 var index = 0;
 
-//引入部分模板
-$(document).ready(function() {
-    $("#header").load("../../template/header.html");
-})
-
-//获取章节序号
-var path = window.location.pathname;
-var page = path.split("/").pop();
-let reg = page.match("novel_(.*).html");
-
-index = Volume.indexOf(reg[1]);
-if (index <= 0) {
-    document.getElementById("LastChapter").disabled = true;
-}
-if (index >= Volume.length - 1) {
-    document.getElementById("NextChapter").disabled = true;
-}
-
 function ChapterWrap(type) {
     var gekka = index + (type == 0 ? -1 : 1);
     window.location.href = "novel_" + Volume[gekka] + ".html";
 }
+
+$(document).ready(function() {
+    //获取章节序号
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+    let reg = page.match("novel_(.*).html");
+    index = Volume.indexOf(reg[1]);
+
+    //引入页眉、侧边栏
+    $("#Header").load("../../template/Header.html");
+    //引入正文
+    $(".MainContent").load("../../template/Chapter.html");
+})

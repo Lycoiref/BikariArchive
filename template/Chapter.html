@@ -1,0 +1,22 @@
+<div class="ChapterWrapTable">
+    <button type="button" id="NextChapter" onclick="ChapterWrap(1)">下一章</button>
+    <button type="button" id="LastChapter" onclick="ChapterWrap(0)">上一章</button>
+</div>
+<h1 id="Title"></h1>
+<hr />
+<div id="NovelText"></div>
+
+<script>
+    //标题
+    document.getElementById("Title").innerHTML = document.title;
+    //引入正文
+    $("#NovelText").load(Volume[index] + ".txt");
+    
+    //按钮可用与否
+    if (index <= 0) {
+        document.getElementById("LastChapter").disabled = true;
+    }
+    if (index >= Volume.length - 1) {
+        document.getElementById("NextChapter").disabled = true;
+    }
+</script>
