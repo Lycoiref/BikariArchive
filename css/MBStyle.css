@@ -79,7 +79,7 @@ div.MainContent {
     margin: 0 0 0 16px;
     padding: 32px 0 0 0;
     border: 0;
-    width: 850px;
+    width: min(60vw, 900px);
     background: transparent;
     color: rgb(63,63,63);
 }
