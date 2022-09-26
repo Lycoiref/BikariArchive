@@ -8,6 +8,7 @@ header, section, footer, aside, nav, main, article, figure {
 body {
     font-family: 'Microsoft Yahei';
     background-color: rgb(253, 253, 248);
+    color: rgb(63,63,63);
 }
 
 /*超链接*/
@@ -16,13 +17,15 @@ a {
     text-decoration: none;
 }
 
+/* ---------------------------------------------------------------- */
+
 /*页眉*/
 header {
     position: sticky;
     top: 0;
     margin: -8px;
     height: 64px;
-    background-color: rgb(240, 237, 94);
+    background-color: rgb(241, 240, 161);
 }
 
 /*页眉标题*/
@@ -30,7 +33,6 @@ header {
     padding: 10px;
     text-align: center;
     font-size: 32px;
-    color:rgb(82, 81, 30);
 }
 
 /* ---------------------------------------------------------------- */
@@ -67,7 +69,7 @@ div.SideBar ul.demo-vertical li a:hover:not(.active) {
 }
 
 div.SideBar ul.demo-vertical a.active {
-    background-color: rgb(240, 237, 94);
+    background-color: rgb(241, 240, 161);
     color:white;
 }
 
@@ -79,9 +81,8 @@ div.MainContent {
     margin: 0 0 0 16px;
     padding: 32px 0 0 0;
     border: 0;
-    width: min(60vw, 900px);
+    width: 900px;
     background: transparent;
-    color: rgb(63,63,63);
 }
 
 div.MainContent a:hover:not(.active) {
@@ -90,19 +91,29 @@ div.MainContent a:hover:not(.active) {
 
 div.MainContent h1 {
     margin: 8px 0 8px 0;
-    font-size: 32px;
+    font-size: 24px;
 }
 
-div.MainContent h2 {
+div.MainContent ul.Volume {
+    margin: 0;
+    padding: 0;
+}
+
+div.MainContent li.Action {
+    list-style-type: none;
     margin: 8px 0 8px 64px;
-    font-weight: normal;
-    font-size: 22px;
+    font-size: 18px;
 }
 
-div.MainContent h3 {
+div.MainContent li.Chapter {
+    list-style-type: none;
     margin: 8px 0 8px 128px;
-    font-weight: normal;
-    font-size: 18px;
+    font-size: 14px;
+}
+
+div.MainContent p {
+    font-size: 16px;
+    text-indent: 32px;
 }
 
 /* ---------------------------------------------------------------- */
