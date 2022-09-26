@@ -39,7 +39,7 @@ header {
 .SideBar {
     float: left;
     border: 1px solid rgb(232,231,247);
-    margin: 32px 0 0 64px;
+    margin: 32px 0 0 24px;
     padding: 0;
     width: 200px;
     background : transparent;
@@ -75,10 +75,10 @@ div.SideBar ul.demo-vertical a.active {
 
 /* 正文内容 */
 div.MainContent {
-    margin: 0 0 0 300px;
+    margin: 0 0 0 256px;
     padding: 32px 0 0 0;
     border: 0;
-    width: min(calc(100vw - 320px), 900px);
+    width: min(calc(100vw - 310px), 900px);
     background: transparent;
 }
 
