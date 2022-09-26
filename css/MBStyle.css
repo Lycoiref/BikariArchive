@@ -116,19 +116,22 @@ div.MainContent p {
     text-indent: 32px;
 }
 
-/* 导航栏 */
-div.MainContent div.NavBar {
-    padding: 5px 10px;
-    margin: 0;
-    border: 1px solid rgb(241, 240, 161);
-    border-left-width: 5px;
-    border-radius: 3px;
-    background: rgb(252, 251, 238);
+/* ---------------------------------------------------------------- */
+
+div.MainContent div.ChapterWrapTable {
+    float: right;
+    margin: 12px 0;
+    width: 15%;
 }
 
-div.MainContent div.NavBar a {
-    color: rgb(11,0,128);
+div.MainContent button#LastChapter {
+    float: left;
 }
+
+div.MainContent button#NextChapter {
+    float: right;
+}
+
 /* ---------------------------------------------------------------- */
 
 /*表格*/
