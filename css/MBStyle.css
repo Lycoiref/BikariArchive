@@ -16,8 +16,9 @@ a {
 
 /*页眉*/
 header {
+    position: sticky;
+    top: 0;
     margin: -8px;
-    width: 101%;
     height: 64px;
     background-color:rgb(240, 237, 94);
 }
