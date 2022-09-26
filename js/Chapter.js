@@ -18,7 +18,10 @@ Volume = [
 ];
 
 window.onload = function Shokika () {
-
+    //引入部分模板
+    $(document).ready(function() {
+        $("#header").load("../../template/header.html");
+    })
 }
 
 function ChapterWrap(type) {
