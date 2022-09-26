@@ -17,19 +17,19 @@ Volume = [
     "300", "301", "302", "303"
 ];
 
-var index = 0;
-
 window.onload = function Shokika () {
     //引入部分模板
     $(document).ready(function() {
         $("#header").load("header.html");
     })
-    
+}
+
+function ChapterWrap(type) {
     //获取章节序号
     var path = window.location.pathname;
     var page = path.split("/").pop();
     let reg = page.match("novel_(.*).html");
-    index = Volume.indexOf(reg[1]);
+    var index = Volume.indexOf(reg[1]);
     
     if (index <= 0) {
         document.getElementById("LastChapter").disabled = true;
@@ -37,9 +37,7 @@ window.onload = function Shokika () {
     if (index >= Volume.length - 1) {
         document.getElementById("NextChapter").disabled = true;
     }
-}
 
-function ChapterWrap(type) {
-    var gekka = index + (type == 0 ? -1 : 1) ;
+    var gekka = index + (type == 0 ? -1 : 1);
     window.location.href = "novel_" + Volume[gekka] + ".html";
 }
