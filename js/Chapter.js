@@ -17,8 +17,16 @@ Volume = [
     "300", "301", "302", "303"
 ];
 
+var VolumeName = new Array();
+VolumeName = [
+    "第一卷 回廊波动",
+    "第二卷 复数现实",
+    "第三卷 浮海之恋"
+];
+
 //章节序号
 var index = 0;
+var vol = 0;
 
 function ChapterWrap(type) {
     var gekka = index + (type == 0 ? -1 : 1);
@@ -31,6 +39,10 @@ $(document).ready(function() {
     var page = path.split("/").pop();
     let reg = page.match("novel_(.*).html");
     index = Volume.indexOf(reg[1]);
+
+    vol = Volume[index];
+    while (vol >= 10) vol = Math.trunc(vol / 10);
+    ;
 
     //引入页眉、侧边栏
     $("#Header").load("../../template/Header.html");
