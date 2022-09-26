@@ -1,3 +1,5 @@
+@import "normalize";
+
 /*旧版本浏览器兼容*/
 header, section, footer, aside, nav, main, article, figure {
     display: block; 
