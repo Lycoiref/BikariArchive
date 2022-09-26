@@ -12,6 +12,7 @@ a {
 
 header {
     margin: -8px;
+    width: 100%;
     height: 64px;
     background-color:rgb(240, 237, 94);
 }
