@@ -13,7 +13,7 @@
     //标题
     document.getElementById("Title").innerHTML = document.title;
     //所属卷
-    document.getElementById("Volume").innerHTML = "(" + VolumeName[vol - 1] + ")";
+    document.getElementById("Volume").innerHTML = "<" + VolumeName[vol - 1] + ">";
     //引入正文
     $("#NovelText").load(Volume[index] + ".txt");
     
