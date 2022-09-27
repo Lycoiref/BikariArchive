@@ -7,15 +7,17 @@
     <span id="Volume" style="position:relative; top:20px; right:24px; float:right; font-size:12px;"></span>
 </div>
 <hr />
-<div id="NovelText"></div>
+<article class="NovelText"></article>
+<article class="NovelExtraArea"></article>
+<hr />
 
 <script>
     //标题
-    document.getElementById("Title").innerHTML = document.title;
+    document.getElementById("Title").innerHTML = document.title.match("(.*)-微光茶馆")[1];
     //所属卷
     document.getElementById("Volume").innerHTML = "<" + VolumeName[vol - 1] + ">";
     //引入正文
-    $("#NovelText").load(Volume[index] + ".txt");
+    $(".NovelText").load(Volume[index] + ".txt");
     
     //按钮可用与否
     if (index <= 0) {

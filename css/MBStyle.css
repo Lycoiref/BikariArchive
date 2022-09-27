@@ -7,8 +7,9 @@ header, section, footer, aside, nav, main, article, figure {
 
 body {
     font-family: 'Microsoft Yahei';
-    background-color: rgb(253, 253, 248);
+    font-size: 16px;
     color: rgb(63,63,63);
+    background-color: rgb(253, 253, 248);
 }
 
 /*超链接*/
@@ -107,7 +108,7 @@ div.MainContent li.Chapter {
     font-size: 14px;
 }
 
-div.MainContent p {
+article.NovelText p {
     font-size: 16px;
     text-indent: 32px;
 
@@ -115,14 +116,54 @@ div.MainContent p {
     line-height: 32px;
 }
 
+article.NovelExtraArea {
+    padding: 32px;
+}
+
 /* ---------------------------------------------------------------- */
 
 /* 个人简介 */
-div#Profile {
+div.Profile {
     width: 100%;
     height: auto;
     overflow: auto;
     zoom: 1;
+    border: 1px solid rgb(232,231,247);
+}
+
+div.Profile-ColorBlock-Left {
+    float: left;
+    height: auto;
+    padding: 0 32px 288px 0;
+    background-color: rgb(241,240,161);
+}
+
+img#Profile-Icon {
+    display: block;
+    float: left;
+    margin: 16px 16px 16px 16px;
+}
+
+/*简介表格*/
+.Profile-Table {
+    border-collapse:separate;
+    border-spacing: 8px;
+    margin-top: 8px;
+}
+
+.Profile-Table th {
+    padding: 4px 16px 4px 16px;
+    text-align: center;
+    font-family: "微软雅黑";
+    font-weight: bold;
+    background-color:rgb(241,240,161);
+}
+
+.Profile-Table td {
+    border-bottom: 1px solid rgb(232,231,247);
+    padding: 0px 32px 0px 32px;
+    text-align: center;
+    font-family: "微软雅黑";
 }
 
 /* ---------------------------------------------------------------- */

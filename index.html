@@ -5,7 +5,9 @@
     <meta name="keywords" content="微光茶馆,Bikari">
 	<meta charset='utf-8'>
     <link rel="stylesheet" type="text/css" href="css/MBStyle.css">
-    <script type="text/javascript" src="js/MBJavaScript.js" defer></script>
+    <script src="js/jquery-3.6.1.min.js" defer></script>
+    <script src="js/MBJavaScript.js" defer></script>
+    <script src="js/PolyLine.js" defer></script>
 </head>
 <body>
 
@@ -26,11 +28,23 @@
 
 <!-- 正文内容 -->
 <div class="MainContent">
-    <div id="Profile">
-        <img src="image/misaki.png" width="256px" style="display:block; float:left;" />
-        <p>作者：山吹色御守</p>
-        <p>B站UID：<a href="https://space.bilibili.com/37810541" style="font-weight:bold; color:rgb(245, 200, 100);">37810541</a></p>
-        <p>个人群(QQ)：836164664</p>
+    <div class="Profile">
+        <div class="Profile-ColorBlock-Left"></div>
+        <img src="image/misaki.png" width="256px" id="Profile-Icon" />
+        <table class="Profile-Table">
+            <tr>
+                <th>作者</th>
+                <td>山吹色御守</td>
+            </tr>
+            <tr>
+                <th>B站UID</th>
+                <td><a href="https://space.bilibili.com/37810541" style="font-weight:bold; color:rgb(245, 200, 100);">37810541</a></td>
+            </tr>
+            <tr>
+                <th>个人群(QQ)</th>
+                <td>836164664</td>
+            </tr>
+        </table>
     </div>
     <hr style="margin:16px 0 16px 0;"/>
 </div>
