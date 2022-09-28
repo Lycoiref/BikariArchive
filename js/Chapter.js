@@ -42,7 +42,6 @@ $(document).ready(function() {
 
     vol = Volume[index];
     while (vol >= 10) vol = Math.trunc(vol / 10);
-    ;
 
     //引入页眉、侧边栏
     $("#Header").load("../../template/Header.html");

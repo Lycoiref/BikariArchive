@@ -1,16 +1,23 @@
 <!--页眉 -->
 <header class="Header">
-    <div id="BikariTitle">微光茶馆-Bikari</div>
+    <div id="BikariTitle">微光茶馆</div>
 </header>
 
 <!-- 侧边栏 -->
 <div class="SideBar">
-    <ul class="demo-vertical">
-        <li><a href="../../index.html">主页</a></li>
-        <li><a href="../../catalogue.html">目录</a></li>
-        <li><a href="javascript::void(0)">情报</a></li>
-        <li><a href="javascript::void(0)">更多</a></li>
-    <ul>
+    <div class="SideBar-Block">
+        <ul class="demo-vertical">
+            <li><a href="../../index.html">主页</a></li>
+            <li><a href="../../catalogue.html">目录</a></li>
+            <li><a href="javascript::void(0)">情报</a></li>
+            <li><a href="javascript::void(0)">更多</a></li>
+        </ul>
+    </div>
+    <div class="SideBar-Block">
+        <ul class="demo-vertical">
+            <li><a href="javascript::void(0)" onclick="BackToTop()">返回顶部</a></li>
+        </ul>
+    </div>
 </div>
 
 <script>
@@ -19,7 +26,7 @@
     let sidebar = document.querySelector(".SideBar");
 
     document.addEventListener("scroll", function () {
-        let mainHeight = header.scrollHeight - 8;
+        let mainHeight = header.scrollHeight;
         if (window.pageYOffset > mainHeight) {
             sidebar.style.position = "fixed";
             sidebar.style.top = "0px";

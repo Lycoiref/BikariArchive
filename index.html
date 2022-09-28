@@ -7,23 +7,31 @@
     <link rel="stylesheet" type="text/css" href="css/MBStyle.css">
     <script src="js/jquery-3.6.1.min.js" defer></script>
     <script src="js/MBJavaScript.js" defer></script>
+    <script src="js/FuncOnly.js" defer></script>
     <script src="js/PolyLine.js" defer></script>
 </head>
 <body>
 
 <!--页眉 -->
 <header class="Header"> 
-    <div id="BikariTitle">微光茶馆-Bikari</div>
+    <div id="BikariTitle">微光茶馆</div>
 </header>
 
 <!-- 侧边栏 -->
 <div class="SideBar">
-    <ul class="demo-vertical">
-        <li><a class="active" href="index.html">主页</a></li>
-        <li><a href="catalogue.html">目录</a></li>
-        <li><a href="javascript::void(0)">情报</a></li>
-        <li><a href="javascript::void(0)">更多</a></li>
-    <ul>
+    <div class="SideBar-Block">
+        <ul class="demo-vertical">
+            <li><a class="active" href="index.html">主页</a></li>
+            <li><a href="catalogue.html">目录</a></li>
+            <li><a href="javascript::void(0)">情报</a></li>
+            <li><a href="javascript::void(0)">更多</a></li>
+        </ul>
+    </div>
+    <div class="SideBar-Block">
+        <ul class="demo-vertical">
+            <li><a href="" onclick="BackToTop()">返回顶部</a></li>
+        </ul>
+    </div>
 </div>
 
 <!-- 正文内容 -->
@@ -42,9 +50,7 @@
             </tr>
             <tr>
                 <th>个人群(QQ)</th>
-                <td>
-                    <a href="https://jq.qq.com/?_wv=1027&k=ezy4Y5TS" id="Profile-QQGroup">836164664</a>
-                </td>
+                <td><a href="https://jq.qq.com/?_wv=1027&k=ezy4Y5TS" id="Profile-QQGroup">836164664</a></td>
             </tr>
         </table>
     </div>

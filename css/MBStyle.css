@@ -6,6 +6,7 @@ header, section, footer, aside, nav, main, article, figure {
 }
 
 body {
+    margin: 0 0 0 0;
     font-family: 'Microsoft Yahei';
     font-size: 16px;
     color: rgb(63,63,63);
@@ -21,17 +22,34 @@ a {
 /* ---------------------------------------------------------------- */
 
 /*页眉*/
-header {
-    margin: -8px;
+.Header {
+    position: sticky;
+    top: 0;
     height: 64px;
     background-color: rgb(241, 240, 161);
+    filter: drop-shadow(0px 0px 8px rgba(0,0,0,0.16));
 }
 
 /*页眉标题*/
 #BikariTitle {
-    padding: 10px;
+    float: left;
+    position: absolute;
+    left: 30%;
+    width: 40%;
+    padding: 11px 0 11px 0;
+    background-color: rgb(255, 255, 230);
     text-align: center;
     font-size: 32px;
+    clip-path: polygon(
+        0 1em,
+        3em 0,
+        calc(100% - 3em) 0,
+        100% 1em,
+        100% calc(100% - 1em),
+        calc(100% - 3em) 100%,
+        3em 100%,
+        0 calc(100% - 1em)
+      );
 }
 
 /* ---------------------------------------------------------------- */
@@ -39,22 +57,28 @@ header {
 /* 侧边栏 */
 .SideBar {
     float: left;
+    position: sticky;
+    margin: 32px 0 0 32px;
+}
+
+.SideBar-Block {
+    top: 96px;
     border: 1px solid rgb(232,231,247);
-    margin: 32px 0 0 24px;
+    margin: 0 0 24px 0;
     padding: 0;
-    width: 200px;
+    width: 192px;
     background : transparent;
 }
 
-div.SideBar ul.demo-vertical {
+.SideBar-Block ul.demo-vertical {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 200px;
+    width: 192px;
     background-color: transparent;
 }
 
-div.SideBar ul.demo-vertical li a {
+.SideBar-Block ul.demo-vertical li a {
     display: block;
     color: #000;
     padding: 8px 0 8px 16px;
@@ -62,12 +86,12 @@ div.SideBar ul.demo-vertical li a {
 	border: 0px;
 }
 
-div.SideBar ul.demo-vertical li a:hover:not(.active) {
+.SideBar-Block ul.demo-vertical li a:hover:not(.active) {
     background-color: rgb(170,170,170);
     color:white;
 }
 
-div.SideBar ul.demo-vertical a.active {
+.SideBar-Block ul.demo-vertical a.active {
     background-color: rgb(241, 240, 161);
     color:white;
 }
@@ -142,9 +166,10 @@ div.Profile-ColorBlock-Left {
 }
 
 img#Profile-Icon {
+    filter: drop-shadow(8px 8px 16px rgba(0,0,0,0.32));
     display: block;
     float: left;
-    margin: 0 8px 0 0;
+    margin: 0 16px 0 8px;
 }
 
 /*简介表格*/

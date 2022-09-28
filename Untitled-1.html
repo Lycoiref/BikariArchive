@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>返回顶部</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 2000px;
+            width: 100%;
+        }
+        .to_top{
+            width: 60px;
+            height: 60px;
+            bottom: 10%;
+            right: 20px;
+            font-size: 40px;
+            line-height: 70px;
+            border: none;
+            background: rgba(0,0,0,0.2);
+            cursor: pointer;
+            opacity: 0;
+            transition: all 1s;
+            /*使点前标签始终置于最上层*/
+            position: fixed;
+            z-index: 99999;
+        }
+    </style>
+</head>
+<body>
+    <div class="to_top">
+        <img src="https://guanchao.site/uploads/gotop/timg.jpg" alt="" width="70;">
+    </div>
+    <script type="text/javascript">
+        window.onscroll = function(){
+            var timer = null;//时间标识符
+            var isTop = true;
+             
+            var obtn = document.getElementsByClassName('to_top')[0];
+            obtn.onclick = function(){
+                // 设置定时器
+                timer = setInterval(function(){
+                    var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    //减小的速度
+                    var isSpeed = Math.floor(-osTop/6);
+                    document.documentElement.scrollTop = document.body.scrollTop = osTop+isSpeed; 
+                    //判断，然后清除定时器
+                    if (osTop == 0) {
+                        clearInterval(timer);
+                    } 
+                    isTop = true;//添加在obtn.onclick事件的timer中    
+                },30);                          
+            };
+            //获取页面的可视窗口高度
+            var client_height = document.documentElement.clientHeight || document.body.clientHeight;
+ 
+            //在滚动的时候增加判断,忘了的话很容易出错
+            var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+            if (osTop >= client_height) {
+                obtn.style.opacity = '1';
+                }else{
+                    obtn.style.opacity = '0';
+                }         
+                if(!isTop){
+                    clearInterval(timer);
+                }
+                isTop = false;
+             
+        }
+    </script>
+</body>
+</html>
