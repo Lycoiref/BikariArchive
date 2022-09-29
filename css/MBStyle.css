@@ -15,8 +15,8 @@ body {
 
 /*超链接*/
 a {
-    color: rgb(63,63,63);
     text-decoration: none;
+    color: rgb(63,63,63);
 }
 
 /* ---------------------------------------------------------------- */
@@ -58,6 +58,7 @@ a {
 .SideBar {
     float: left;
     position: sticky;
+    top: 96px;
     margin: 32px 0 0 32px;
 }
 
@@ -166,7 +167,7 @@ div.Profile-ColorBlock-Left {
 }
 
 img#Profile-Icon {
-    filter: drop-shadow(8px 8px 16px rgba(0,0,0,0.32));
+    filter: drop-shadow(4px 4px 12px rgba(0,0,0,0.32));
     display: block;
     float: left;
     margin: 0 16px 0 8px;
