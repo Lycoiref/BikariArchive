@@ -1,8 +1,8 @@
 <div style="width:100%; height:auto; overflow:auto; zoom:1; margin-bottom:-8px;">
     <h1 id="Title" style="float: left;"></h1>
-    <div class="ChapterWrapTable">
-        <button type="button" id="NextChapter" onclick="ChapterWrap(1)">下一章</button>
-        <button type="button" id="LastChapter" onclick="ChapterWrap(0)">上一章</button>
+    <div class="ChapterWrapBox-Top">
+        <button type="button" class="NextChapter" onclick="ChapterWrap(1)">下一章</button>
+        <button type="button" class="LastChapter" onclick="ChapterWrap(0)">上一章</button>
     </div>
     <span id="Volume" style="position:relative; top:20px; right:24px; float:right; font-size:12px;"></span>
 </div>
@@ -10,6 +10,10 @@
 <article class="NovelText"></article>
 <article class="NovelExtraArea"></article>
 <hr />
+<div class="ChapterWrapBox-Bottom" style="width:100%;">
+        <span onclick="ChapterWrap(0)" class="LastChapter" href="javascript::void(0)">上一章</span>
+        <span onclick="ChapterWrap(1)" class="NextChapter" href="javascript::void(0)">下一章</span>
+</div>
 
 <script>
     //标题
@@ -21,9 +25,11 @@
     
     //按钮可用与否
     if (index <= 0) {
-        document.getElementById("LastChapter").disabled = true;
+        document.getElementsByClassName("LastChapter")[0].disabled = true;
+        document.getElementsByClassName("LastChapter")[1].style.display = "none";
     }
     if (index >= Volume.length - 1) {
-        document.getElementById("NextChapter").disabled = true;
+        document.getElementsByClassName("NextChapter")[0].disabled = true;
+        document.getElementsByClassName("NextChapter")[1].style.display = "none";
     }
 </script>
