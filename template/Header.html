@@ -30,9 +30,11 @@
         if (window.pageYOffset > mainHeight) {
             sidebar.style.position = "fixed";
             sidebar.style.top = "0px";
+            sidebar.style.left = -window.pageXOffset + "px";
         } else {
             sidebar.style.position = "absolute";
             sidebar.style.top = mainHeight + "px";
+            sidebar.style.left = "0px";
         }
     })
 </script>
