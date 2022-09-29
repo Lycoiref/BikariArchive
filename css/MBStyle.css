@@ -9,14 +9,14 @@ body {
     margin: 0 0 0 0;
     font-family: 'Microsoft Yahei';
     font-size: 16px;
-    color: rgb(63,63,63);
+    color: rgb(60, 56, 54);
     background-color: rgb(253, 253, 248);
 }
 
 /*超链接*/
 a {
     text-decoration: none;
-    color: rgb(63,63,63);
+    color: rgb(60, 56, 54);
 }
 
 /* ---------------------------------------------------------------- */
