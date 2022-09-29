@@ -29,12 +29,17 @@ var index = 0;
 var vol = 0;
 
 function ChapterWrap(type) {
+    //获取下一章节的序号与卷号
     var gekka = index + (type == 0 ? -1 : 1);
-    window.location.href = "novel_" + Volume[gekka] + ".html";
+    var nextvol  = Volume[gekka];
+    while (nextvol >= 10) nextvol = Math.trunc(nextvol / 10);
+
+    //章节跳转
+    window.location.href = "../Volume." + nextvol + "/novel_" + Volume[gekka] + ".html";
 }
 
 $(document).ready(function() {
-    //获取章节序号
+    //获取章节序号与卷号
     var path = window.location.pathname;
     var page = path.split("/").pop();
     let reg = page.match("novel_(.*).html");

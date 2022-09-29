@@ -107,7 +107,7 @@ div.MainContent {
     margin: 0 0 0 256px;
     padding: 32px 0 0 0;
     border: 0;
-    width: calc(100vw - 320px);
+    width: min(calc(100vw - 320px), 1024px);
     background: transparent;
 }
 
@@ -145,7 +145,7 @@ article.NovelText p {
 }
 
 article.NovelExtraArea {
-    padding: 32px;
+    padding: 16px;
 }
 
 /* ---------------------------------------------------------------- */
@@ -199,17 +199,11 @@ img#Profile-Icon {
 
 /* 上下章切换 */
 div.MainContent div.ChapterWrapBox-Top {
+    display: flex;
+    justify-content: space-between;
     float: right;
+    width: 144px;
     margin: 12px 0;
-}
-
-div.MainContent button.LastChapter {
-    float: right;
-    margin-right: 32px;
-}
-
-div.MainContent button.NextChapter {
-    float: right;
 }
 
 div.MainContent div.ChapterWrapBox-Bottom {
