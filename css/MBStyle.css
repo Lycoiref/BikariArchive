@@ -163,7 +163,6 @@ div.Content-Table {
 
 div.Profile-ColorBlock-Left {
     float: left;
-    height: auto;
     margin: -16px -16px -16px -48px;
     padding: 0 32px 0 0;
     background-color: rgb(241,240,161);
@@ -220,6 +219,40 @@ div.MainContent span.LastChapter, span.NextChapter {
     font-weight: bold;
     color: rgb(96, 96, 96);
     cursor: pointer;
+}
+
+/* ---------------------------------------------------------------- */
+
+/* 情报板块 */
+div.JouhouBox {
+    float: left;
+    width: 100px;
+    height: auto;
+    margin: 0 32px 32px 0;
+    padding: 24px 24px 8px 56px;
+    border: 1px solid rgb(232,231,247);
+}
+
+div.JouhouBox a > span {
+    display: block;
+    width: 100%;
+    padding-top: 8px;
+    line-height: 20px;
+    text-align: center;
+}
+
+div.JouhouBox-ColorBlock-Left {
+    float: left;
+    height: 160px;
+    margin: -24px 0 -8px -56px;
+    padding: 0 0 0 32px;
+    background-color: rgb(241,240,161);
+}
+
+div.JouhouBox-Image {
+    width: 100px;
+    height: 100px;
+    filter: drop-shadow(4px 4px 12px rgba(0,0,0,0.24));
 }
 
 /* ---------------------------------------------------------------- */
