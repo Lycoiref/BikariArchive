@@ -310,7 +310,12 @@ table.JouhouBlock-Table a:hover:not(.active) {
 
 /* 设定页 */
 div.Detail-Block {
-    margin: 0 0 32px 0;
+    overflow: auto;
+}
+
+div.Detail-Illustration {
+    float: right;
+    width: 320px;
 }
 
 /* ---------------------------------------------------------------- */
