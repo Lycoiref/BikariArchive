@@ -10,13 +10,23 @@ body {
     font-family: 'Microsoft Yahei';
     font-size: 16px;
     color: rgb(36, 33, 30);
-    background-color: rgb(253, 253, 248);
+    background-image: url("../image/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+:root {
+    --theme-link-color: rgb(63, 81, 181);
 }
 
 /*超链接*/
 a {
     text-decoration: none;
     color: rgb(36, 33, 30);
+}
+
+a:hover:not(.active) {
+    text-decoration: underline;
 }
 
 /* ---------------------------------------------------------------- */
@@ -65,20 +75,22 @@ a {
 }
 
 .SideBar-Block {
+    overflow: auto;
     top: 96px;
-    border: 1px solid rgb(232,231,247);
+    width: 192px;
     margin: 0 0 24px 0;
     padding: 0;
-    width: 192px;
-    background : transparent;
+    border: 1px solid rgb(232,231,247);
+    border-radius: 16px;
+    background-color: rgba(253, 253, 248, 0.88);
 }
 
 .SideBar-Block ul.demo-vertical {
-    list-style-type: none;
+    width: 192px;
     margin: 0;
     padding: 0;
-    width: 192px;
     background-color: transparent;
+    list-style-type: none;
 }
 
 .SideBar-Block ul.demo-vertical li a {
@@ -104,15 +116,12 @@ a {
 /* 正文内容 */
 div.MainContent {
     min-width: 640px;
-    margin: 0 0 0 256px;
-    padding: 32px 0 0 0;
-    border: 0;
+    margin: 32px 0 0 256px;
+    padding: 16px 32px 16px 32px;
     width: min(calc(100vw - 320px), 1024px);
-    background: transparent;
-}
-
-div.MainContent a:hover:not(.active) {
-    text-decoration: underline;
+    border-radius: 16px;
+    background-color: rgba(253, 253, 248, 0.88);
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.16);
 }
 
 div.MainContent h1 {
@@ -156,9 +165,10 @@ div.Content-Table {
     height: auto;
     overflow: auto;
     zoom: 1;
-    margin: 0 0 32px 0;
+    margin: 16px 0 16px 0;
     padding: 16px 16px 16px 48px;
     border: 1px solid rgb(232,231,247);
+    background-color: rgb(253, 253, 248);
 }
 
 div.Profile-ColorBlock-Left {
@@ -224,16 +234,27 @@ div.MainContent span.LastChapter, span.NextChapter {
 /* ---------------------------------------------------------------- */
 
 /* 情报板块 */
-div.JouhouBox {
+div.JouhouBlock {
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    zoom: 1;
+
+    margin: 16px 0 16px 0;
+}
+
+/* 情报盒 */
+div.JouhouBlock-Box {
     float: left;
     width: 100px;
     height: auto;
-    margin: 0 32px 32px 0;
+    margin: 0 32px 0 0;
     padding: 24px 24px 8px 56px;
-    border: 1px solid rgb(232,231,247);
+    border: 1px solid rgb(232, 231, 247);
+    background-color: rgb(253, 253, 248);
 }
 
-div.JouhouBox a > span {
+div.JouhouBlock-Box span {
     display: block;
     width: 100%;
     padding-top: 8px;
@@ -241,7 +262,7 @@ div.JouhouBox a > span {
     text-align: center;
 }
 
-div.JouhouBox-ColorBlock-Left {
+div.JouhouBlock-Box-LeftColor {
     float: left;
     height: 160px;
     margin: -24px 0 -8px -56px;
@@ -249,15 +270,41 @@ div.JouhouBox-ColorBlock-Left {
     background-color: rgb(241,240,161);
 }
 
-div.JouhouBox-Image {
+div.JouhouBlock-Image {
     width: 100px;
     height: 100px;
     filter: drop-shadow(4px 4px 12px rgba(0,0,0,0.24));
 }
 
+/* 情报信息表格 */
+table.JouhouBlock-Table {
+    width: calc(100% - 216px);
+    border: 1px solid rgb(172, 172, 172);
+    border-spacing: 2px;
+}
+
+table.JouhouBlock-Table th {
+    padding: 4px 4px 4px 4px;
+    text-align: center;
+    font-weight: bold;
+    background-color:rgb(241, 240, 161);
+}
+
+table.JouhouBlock-Table td {
+    padding: 0 0 0 6px;
+}
+
+table.JouhouBlock-Table a {
+    color: var(--theme-link-color);
+}
+
+table.JouhouBlock-Table a:hover:not(.active) {
+    text-decoration: none;
+}
+
 /* ---------------------------------------------------------------- */
 
-/*表格*/
+/* 表格 */
 .MBTable {
     border-collapse:collapse;
     border: 0px;

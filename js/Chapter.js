@@ -39,7 +39,24 @@ $(document).ready(function() {
     while (vol >= 10) vol = Math.trunc(vol / 10);
 
     //引入页眉、侧边栏
-    $("#Header").load("../../template/Header.html");
+    $("#Header").load("../../template/Header.html", function(){
+        //侧边栏
+        let header = document.querySelector(".Header");
+        let sidebar = document.querySelector(".SideBar");
+    
+        document.addEventListener("scroll", function () {
+            let mainHeight = header.scrollHeight;
+            if (window.pageYOffset > mainHeight) {
+                sidebar.style.position = "fixed";
+                sidebar.style.top = "0px";
+                sidebar.style.left = -window.pageXOffset + "px";
+            } else {
+                sidebar.style.position = "absolute";
+                sidebar.style.top = mainHeight + "px";
+                sidebar.style.left = "0px";
+            }
+        })
+    });
     //引入正文
     $(".MainContent").load("../../template/Chapter.html");
 })
