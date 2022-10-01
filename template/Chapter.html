@@ -12,13 +12,13 @@
 <article class="NovelExtraArea"></article>
 <hr />
 <div class="ChapterWrapBox-Bottom">
-        <span onclick="ChapterWrap(0)" class="LastChapter" href="javascript::void(0)">上一章</span>
-        <span onclick="ChapterWrap(1)" class="NextChapter" href="javascript::void(0)">下一章</span>
+    <span onclick="ChapterWrap(0)" class="LastChapter" href="javascript::void(0)">上一章</span>
+    <span onclick="ChapterWrap(1)" class="NextChapter" href="javascript::void(0)">下一章</span>
 </div>
 
 <script>
     //标题
-    document.getElementById("Title").innerHTML = document.title.match("(.*)-微光茶馆")[1];
+    document.getElementById("Title").innerHTML = document.title.match("(.*) - 微光茶馆")[1];
     //所属卷
     document.getElementById("Volume").innerHTML = "<" + VolumeName[vol - 1] + ">";
     //引入正文
@@ -36,7 +36,4 @@
         document.getElementsByClassName("NextChapter")[0].disabled = true;
         document.getElementsByClassName("NextChapter")[1].style.display = "none";
     }
-
-
-
 </script>
