@@ -126,7 +126,12 @@ div.MainContent {
 
 div.MainContent h1 {
     margin: 8px 0 8px 0;
-    font-size: 25px;
+    font-size: 40px;
+}
+
+div.MainContent h2 {
+    margin: 8px 0 8px 0;
+    font-size: 24px;
 }
 
 div.MainContent ul.Volume {
@@ -145,15 +150,14 @@ div.MainContent li.Chapter {
     font-size: 14px;
 }
 
-article.NovelText p {
-    font-size: 16px;
-    text-indent: 32px;
-
+div.MainContent p {
     margin: 0;
     line-height: 32px;
+    text-indent: 32px;
+    font-size: 16px;
 }
 
-article.NovelExtraArea {
+article.ContentExtraArea {
     padding: 16px;
 }
 
@@ -304,31 +308,12 @@ table.JouhouBlock-Table a:hover:not(.active) {
 
 /* ---------------------------------------------------------------- */
 
-/* 表格 */
-.MBTable {
-    border-collapse:collapse;
-    border: 0px;
+/* 设定页 */
+div.Detail-Block {
+    margin: 0 0 32px 0;
 }
 
-.MBTable th {
-    border: 1px solid rgb(204, 204, 204);
-    padding: 3px;
-    text-align: center;
-    font-family: "微软雅黑";
-    font-size: 16px;
-    font-weight: bold;
-    color: #255E95;
-    background-color:#E9FAFF;
-}
-
-.MBTable td {
-    border: 1px solid rgb(204, 204, 204);
-    padding: 3px;
-    font-family: "微软雅黑";
-    font-size: 16px;
-    color: #000000;
-    background-color:#FFFFFF;
-}
+/* ---------------------------------------------------------------- */
 
 /*通用*/
 .text-center {
