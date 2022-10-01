@@ -5,24 +5,34 @@ header, section, footer, aside, nav, main, article, figure {
     display: block; 
 }
 
+:root {
+    --theme-text-color: rgb(36, 33, 30);
+    --theme-background-color: rgb(253, 253, 248);
+    --theme-background-color-alpha: rgba(253, 253, 248, 0.88);
+    --theme-border-color: rgb(232, 231, 247);
+    --theme-block-color: rgb(241, 240, 161);
+    --theme-link-color: rgb(63, 81, 181);
+}
+
+@font-face {
+    font-family: "腾祥沁园简";
+    src: url("fonts/TengXQJianYuan-w3.ttf") format("truetype");
+}
+
 body {
     margin: 0 0 0 0;
     font-family: 'Microsoft Yahei';
     font-size: 16px;
-    color: rgb(36, 33, 30);
+    color: var(--theme-text-color);
     background-image: url("../image/background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
-:root {
-    --theme-link-color: rgb(63, 81, 181);
-}
-
 /*超链接*/
 a {
     text-decoration: none;
-    color: rgb(36, 33, 30);
+    color: var(--theme-text-color);
 }
 
 a:hover:not(.active) {
@@ -38,7 +48,7 @@ a:hover:not(.active) {
     min-width: 960px;
     width: 100%;
     height: 64px;
-    background-color: rgb(241, 240, 161);
+    background-color: var(--theme-block-color);
     filter: drop-shadow(0px 0px 8px rgba(0,0,0,0.16));
 }
 
@@ -48,9 +58,11 @@ a:hover:not(.active) {
     position: absolute;
     left: 30%;
     width: 40%;
-    padding: 11px 0 11px 0;
+    padding: 16px 0 16px 0;
     background-color: rgb(255, 255, 230);
     text-align: center;
+    line-height: 32px;
+    font-family: "腾祥沁园简";
     font-size: 32px;
     clip-path: polygon(
         0 1em,
@@ -80,9 +92,9 @@ a:hover:not(.active) {
     width: 192px;
     margin: 0 0 24px 0;
     padding: 0;
-    border: 1px solid rgb(232,231,247);
+    border: 1px solid var(--theme-border-color);
     border-radius: 16px;
-    background-color: rgba(253, 253, 248, 0.88);
+    background-color: var(--theme-background-color-alpha);
 }
 
 .SideBar-Block ul.demo-vertical {
@@ -102,12 +114,12 @@ a:hover:not(.active) {
 }
 
 .SideBar-Block ul.demo-vertical li a:hover:not(.active) {
-    background-color: rgb(170,170,170);
+    background-color: rgb(170, 170, 170);
     color:white;
 }
 
 .SideBar-Block ul.demo-vertical a.active {
-    background-color: rgb(241, 240, 161);
+    background-color: var(--theme-block-color);
     color:white;
 }
 
@@ -118,9 +130,9 @@ div.MainContent {
     min-width: 640px;
     margin: 32px 0 0 256px;
     padding: 16px 32px 16px 32px;
-    width: min(calc(100vw - 320px), 1024px);
+    width: min(calc(100vw - 352px), 1024px);
     border-radius: 16px;
-    background-color: rgba(253, 253, 248, 0.88);
+    background-color: var(--theme-background-color-alpha);
     box-shadow: 0px 0px 8px rgba(0,0,0,0.16);
 }
 
@@ -171,15 +183,15 @@ div.Content-Table {
     zoom: 1;
     margin: 16px 0 16px 0;
     padding: 16px 16px 16px 48px;
-    border: 1px solid rgb(232,231,247);
-    background-color: rgb(253, 253, 248);
+    border: 1px solid var(--theme-border-color);
+    background-color: var(--theme-background-color);
 }
 
 div.Profile-ColorBlock-Left {
     float: left;
     margin: -16px -16px -16px -48px;
     padding: 0 32px 0 0;
-    background-color: rgb(241,240,161);
+    background-color: var(--theme-block-color);
 }
 
 img#Profile-Icon {
@@ -199,11 +211,11 @@ img#Profile-Icon {
     padding: 4px 16px 4px 16px;
     text-align: center;
     font-weight: bold;
-    background-color:rgb(241,240,161);
+    background-color:var(--theme-block-color);
 }
 
 .Profile-Table td {
-    border-bottom: 1px solid rgb(232,231,247);
+    border-bottom: 1px solid var(--theme-border-color);
     padding: 0 32px 0 32px;
     text-align: center;
 }
@@ -227,9 +239,9 @@ div.MainContent div.ChapterWrapBox-Bottom {
 div.MainContent span.LastChapter, span.NextChapter {
     margin: 16px 36px 16px 36px;
     padding: 16px 96px 16px 96px;
-    border: 2px solid rgb(232,231,247);
+    border: 2px solid var(--theme-border-color);
     border-radius: 16px;
-    background-color: rgb(241, 240, 161);
+    background-color: var(--theme-block-color);
     font-weight: bold;
     color: rgb(96, 96, 96);
     cursor: pointer;
@@ -243,7 +255,6 @@ div.JouhouBlock {
     height: auto;
     overflow: auto;
     zoom: 1;
-
     margin: 16px 0 16px 0;
 }
 
@@ -254,8 +265,8 @@ div.JouhouBlock-Box {
     height: auto;
     margin: 0 32px 0 0;
     padding: 24px 24px 8px 56px;
-    border: 1px solid rgb(232, 231, 247);
-    background-color: rgb(253, 253, 248);
+    border: 1px solid var(--theme-border-color);
+    background-color: var(--theme-background-color);
 }
 
 div.JouhouBlock-Box span {
@@ -271,12 +282,14 @@ div.JouhouBlock-Box-LeftColor {
     height: 160px;
     margin: -24px 0 -8px -56px;
     padding: 0 0 0 32px;
-    background-color: rgb(241,240,161);
+    background-color: var(--theme-block-color);
 }
 
 div.JouhouBlock-Image {
     width: 100px;
     height: 100px;
+    overflow: hidden;
+    border-radius: 50px;
     filter: drop-shadow(4px 4px 12px rgba(0,0,0,0.24));
 }
 
@@ -291,7 +304,7 @@ table.JouhouBlock-Table th {
     padding: 4px 4px 4px 4px;
     text-align: center;
     font-weight: bold;
-    background-color:rgb(241, 240, 161);
+    background-color:var(--theme-block-color);
 }
 
 table.JouhouBlock-Table td {
