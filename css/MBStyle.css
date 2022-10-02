@@ -10,13 +10,13 @@ header, section, footer, aside, nav, main, article, figure {
     --theme-text-color: rgb(36, 33, 30);
     --theme-background-color: rgb(253, 253, 248);
     --theme-background-color-alpha: rgba(253, 253, 248, 0.88);
-    --theme-border-color: rgb(232, 231, 247);
+    --theme-border-color: rgb(221, 221, 221);
     --theme-block-color: rgb(241, 240, 161);
     --theme-link-color: rgb(63, 81, 181);
 }
 
 @font-face {
-    font-family: "腾祥沁园简";
+    font-family: "腾祥沁圆简";
     src: url("fonts/TengXQJianYuan-w3.ttf") format("truetype");
 }
 
@@ -33,11 +33,18 @@ body {
 /*超链接*/
 a {
     text-decoration: none;
-    color: var(--theme-text-color);
+    color: var(--theme-link-color);
 }
 
 a:hover:not(.active) {
-    text-decoration: underline;
+    text-decoration: none;
+}
+
+p {
+    margin: 0;
+    line-height: 32px;
+    text-indent: 32px;
+    font-size: 16px;
 }
 
 .NovelInf {
@@ -68,7 +75,7 @@ a:hover:not(.active) {
     background-color: rgb(255, 255, 230);
     text-align: center;
     line-height: 32px;
-    font-family: "腾祥沁园简";
+    font-family: "腾祥沁圆简";
     font-size: 32px;
     clip-path: polygon(
         0 1em,
@@ -134,7 +141,7 @@ a:hover:not(.active) {
 /* 正文内容 */
 div.MainContent {
     min-width: 672px;
-    margin: 32px 0 0 256px;
+    margin: 32px 0 32px 256px;
     padding: 16px 32px 16px 32px;
     width: min(calc(100vw - 320px), 1024px);
     border-radius: 16px;
@@ -152,29 +159,6 @@ div.MainContent h2 {
     font-size: 24px;
 }
 
-div.MainContent ul.Volume {
-    margin: 0;
-    padding: 0;
-}
-
-div.MainContent li.Action {
-    list-style-type: none;
-    margin: 8px 0 8px 64px;
-    font-size: 17px;
-}
-
-div.MainContent li.Chapter {
-    margin: 8px 0 8px 128px;
-    font-size: 14px;
-}
-
-div.MainContent p {
-    margin: 0;
-    line-height: 32px;
-    text-indent: 32px;
-    font-size: 16px;
-}
-
 article.NovelText {
     padding: 0 32px 0 32px;
 }
@@ -188,29 +172,54 @@ article.ContentExtraArea {
 /* 主页内容盒 */
 div.Content-Table {
     width: auto;
-    height: auto;
+    height: calc(100% - 32px);
     overflow: auto;
     zoom: 1;
     margin: 16px 0 16px 0;
-    padding: 16px 16px 16px 48px;
+    padding: 16px 16px 16px 16px;
     border: 1px solid var(--theme-border-color);
+    border-left: 32px solid var(--theme-block-color);
     background-color: var(--theme-background-color);
-}
-
-/* 色块填充 */
-div.Profile-ColorBlock-Left {
-    float: left;
-    min-height: 100%;
-    margin: -16px -16px -16px -48px;
-    padding: 0 32px 0 0;
-    background-color: var(--theme-block-color);
 }
 
 img#Profile-Icon {
     filter: drop-shadow(4px 4px 12px rgba(0,0,0,0.32));
+    display: inline-block;
+    width: 80%;
+    margin: 0 0 8px 0;
+}
+
+.Content-h1 {
+    font-family: "腾祥沁圆简";
+    font-size: 20px;
+}
+
+.Content-p-small {
+    text-indent:0;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+/* 标签列表 */
+ul.Content-Cats {
     display: block;
+    overflow: auto;
+    margin: 8px 0 8px 0;
+    padding: 0;
+}
+
+ul.Content-Cats li {
     float: left;
-    margin: 0 16px 0 8px;
+    list-style-type: none;
+    padding: 0 12px 0 12px;
+    border: 1px solid var(--theme-border-color);
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+ul.Content-Cats li+li {
+    margin-left: 16px;
 }
 
 /*简介表格*/
@@ -220,7 +229,7 @@ img#Profile-Icon {
 }
 
 .Profile-Table th {
-    padding: 4px 16px 4px 16px;
+    padding: 4px 4px 4px 4px;
     text-align: center;
     font-weight: bold;
     background-color:var(--theme-block-color);
@@ -228,8 +237,34 @@ img#Profile-Icon {
 
 .Profile-Table td {
     border-bottom: 1px solid var(--theme-border-color);
-    padding: 0 32px 0 32px;
     text-align: center;
+}
+
+/* ---------------------------------------------------------------- */
+
+/* 目录页 */
+ul.Volume a {
+    color: var(--theme-text-color);
+}
+
+ul.Volume a:hover:not(.active) {
+    text-decoration: underline;
+}
+
+ul.Volume {
+    margin: 0;
+    padding: 0;
+}
+
+li.Action {
+    list-style-type: none;
+    margin: 8px 0 8px 64px;
+    font-size: 17px;
+}
+
+li.Chapter {
+    margin: 8px 0 8px 128px;
+    font-size: 14px;
 }
 
 /* ---------------------------------------------------------------- */
@@ -320,14 +355,10 @@ table.JouhouBlock-Table th {
 }
 
 table.JouhouBlock-Table td {
-    padding: 0 0 0 6px;
+    padding: 0 6px 0 6px;
 }
 
-table.JouhouBlock-Table a, #Log a {
-    color: var(--theme-link-color);
-}
-
-table.JouhouBlock-Table a:hover:not(.active), #Log a:hover:not(.active) {
+table.JouhouBlock-Table a:hover:not(.active) {
     text-decoration: none;
 }
 
