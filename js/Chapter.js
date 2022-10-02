@@ -26,7 +26,7 @@ Volume = {
             "2004", "215", "216", "217", "218", "219", "220",
             "2005",
         
-            "300", "301", "302", "303" 
+            "300", "301", "302", "303"
         ]
     },
 
@@ -76,16 +76,18 @@ function ChapterWrap(type) {
 }
 
 function WordCount() {
-    var lines = document.getElementsByTagName("p");
-    var rubys = document.getElementsByTagName("ruby");
-    var brs = document.getElementsByTagName("br");
+    var article = document.getElementsByClassName("NovelText")[0];
+
+    var lines = article.getElementsByTagName("p");
+    var ruby = article.getElementsByTagName("ruby");
+    var br = article.getElementsByTagName("br");
 
     var count = 0;
     for (let i = 0; i < lines.length; i++) {
         count += lines[i].innerHTML.length;
     }
 
-    count -= rubys.length * 42;
-    count -= brs.length * 6;
+    count -= ruby.length * 42;
+    count -= br.length * 6;
     return count;
 }

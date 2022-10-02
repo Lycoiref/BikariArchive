@@ -1,4 +1,5 @@
 @import "normalize.css";
+@import "wikilike.css";
 
 /*旧版本浏览器兼容*/
 header, section, footer, aside, nav, main, article, figure {
@@ -94,7 +95,7 @@ a:hover:not(.active) {
 .SideBar-Block {
     overflow: auto;
     top: 96px;
-    width: 192px;
+    width: 194px;
     margin: 0 0 24px 0;
     padding: 0;
     border: 1px solid var(--theme-border-color);
@@ -132,10 +133,10 @@ a:hover:not(.active) {
 
 /* 正文内容 */
 div.MainContent {
-    min-width: 608px;
+    min-width: 672px;
     margin: 32px 0 0 256px;
     padding: 16px 32px 16px 32px;
-    width: min(calc(100vw - 352px), 1024px);
+    width: min(calc(100vw - 320px), 1024px);
     border-radius: 16px;
     background-color: var(--theme-background-color-alpha);
     box-shadow: 0px 0px 8px rgba(0,0,0,0.16);
@@ -184,7 +185,7 @@ article.ContentExtraArea {
 
 /* ---------------------------------------------------------------- */
 
-/* 个人简介 */
+/* 主页内容盒 */
 div.Content-Table {
     width: auto;
     height: auto;
@@ -196,8 +197,10 @@ div.Content-Table {
     background-color: var(--theme-background-color);
 }
 
+/* 色块填充 */
 div.Profile-ColorBlock-Left {
     float: left;
+    min-height: 100%;
     margin: -16px -16px -16px -48px;
     padding: 0 32px 0 0;
     background-color: var(--theme-block-color);
@@ -270,7 +273,7 @@ div.JouhouBlock {
 /* 情报盒 */
 div.JouhouBlock-Box {
     float: left;
-    width: 100px;
+    width: 184px;
     height: auto;
     margin: 0 32px 0 0;
     padding: 24px 24px 8px 56px;
@@ -338,6 +341,7 @@ div.Detail-Block {
 div.Detail-Illustration {
     float: right;
     width: 320px;
+    margin: 0 0 0 16px;
 }
 
 /* ---------------------------------------------------------------- */
