@@ -39,6 +39,10 @@ a:hover:not(.active) {
     text-decoration: underline;
 }
 
+.NovelInf {
+    display: none;
+}
+
 /* ---------------------------------------------------------------- */
 
 /*页眉*/
@@ -316,11 +320,11 @@ table.JouhouBlock-Table td {
     padding: 0 0 0 6px;
 }
 
-table.JouhouBlock-Table a {
+table.JouhouBlock-Table a, #Log a {
     color: var(--theme-link-color);
 }
 
-table.JouhouBlock-Table a:hover:not(.active) {
+table.JouhouBlock-Table a:hover:not(.active), #Log a:hover:not(.active) {
     text-decoration: none;
 }
 
