@@ -7,12 +7,13 @@ header, section, footer, aside, nav, main, article, figure {
 }
 
 :root {
-    --theme-text-color: rgb(36, 33, 30);
-    --theme-background-color: rgb(253, 253, 248);
-    --theme-background-color-alpha: rgba(253, 253, 248, 0.88);
-    --theme-border-color: rgb(221, 221, 221);
-    --theme-block-color: rgb(241, 240, 161);
-    --theme-link-color: rgb(63, 81, 181);
+    --theme-text-color: rgb(36, 33, 30); /* 文本色 */
+    --theme-link-color: rgb(63, 81, 181); /* 超链接色 */
+    --theme-border-color: rgb(221, 221, 221); /* 边框色 */
+    --theme-background-color: rgb(253, 253, 248); /* 背景色 */
+    --theme-background-color-alpha: rgba(253, 253, 248, 0.88); /* 背景色-透明 */
+    --theme-block-color: rgb(255, 232, 144); /* 填充色 */
+    --theme-block-color-light: rgb(255, 255, 232); /* 填充色-浅 */
 }
 
 @font-face {
@@ -47,6 +48,17 @@ p {
     font-size: 16px;
 }
 
+th {
+    padding: 4px 4px 4px 4px;
+    text-align: center;
+    font-weight: bold;
+    background-color:var(--theme-block-color);
+}
+
+td {
+    padding: 0 6px 0 6px;
+}
+
 .NovelInf {
     display: none;
 }
@@ -72,7 +84,7 @@ p {
     left: 30%;
     width: 40%;
     padding: 16px 0 16px 0;
-    background-color: rgb(255, 255, 230);
+    background-color: var(--theme-block-color-light);
     text-align: center;
     line-height: 32px;
     font-family: "腾祥沁圆简";
@@ -101,8 +113,7 @@ p {
 
 .SideBar-Block {
     overflow: auto;
-    top: 96px;
-    width: 194px;
+    width: 192px;
     margin: 0 0 24px 0;
     padding: 0;
     border: 1px solid var(--theme-border-color);
@@ -111,7 +122,7 @@ p {
 }
 
 .SideBar-Block ul.demo-vertical {
-    width: 192px;
+    width: 190px;
     margin: 0;
     padding: 0;
     background-color: transparent;
@@ -146,7 +157,7 @@ div.MainContent {
     width: min(calc(100vw - 320px), 1024px);
     border-radius: 16px;
     background-color: var(--theme-background-color-alpha);
-    box-shadow: 0px 0px 8px rgba(0,0,0,0.16);
+    box-shadow: 0 0 4px 0 rgba(0,0,0,0.32);
 }
 
 div.MainContent h1 {
@@ -182,22 +193,17 @@ div.Content-Table {
     background-color: var(--theme-background-color);
 }
 
+div.Content-Table p {
+    font-size: 14px;
+    line-height: 24px;
+    text-indent: 28px;
+}
+
 img#Profile-Icon {
     filter: drop-shadow(4px 4px 12px rgba(0,0,0,0.32));
     display: inline-block;
     width: 80%;
     margin: 0 0 8px 0;
-}
-
-.Content-h1 {
-    font-family: "腾祥沁圆简";
-    font-size: 20px;
-}
-
-.Content-p-small {
-    text-indent:0;
-    font-size: 14px;
-    line-height: 24px;
 }
 
 /* 标签列表 */
@@ -219,20 +225,13 @@ ul.Content-Cats li {
 }
 
 ul.Content-Cats li+li {
-    margin-left: 16px;
+    margin-left: 12px;
 }
 
 /*简介表格*/
 .Profile-Table {
     border-collapse:separate;
     border-spacing: 8px;
-}
-
-.Profile-Table th {
-    padding: 4px 4px 4px 4px;
-    text-align: center;
-    font-weight: bold;
-    background-color:var(--theme-block-color);
 }
 
 .Profile-Table td {
@@ -285,7 +284,7 @@ div.MainContent div.ChapterWrapBox-Bottom {
 
 div.MainContent span.LastChapter, span.NextChapter {
     margin: 16px 36px 16px 36px;
-    padding: 16px 96px 16px 96px;
+    padding: 16px 64px;
     border: 2px solid var(--theme-border-color);
     border-radius: 16px;
     background-color: var(--theme-block-color);
@@ -340,26 +339,19 @@ div.JouhouBlock-Image {
     filter: drop-shadow(4px 4px 12px rgba(0,0,0,0.24));
 }
 
-/* 情报信息表格 */
-table.JouhouBlock-Table {
+/* 导航表格 */
+.navbox-table {
     width: calc(100% - 216px);
     border: 1px solid rgb(172, 172, 172);
     border-spacing: 2px;
 }
 
-table.JouhouBlock-Table th {
-    padding: 4px 4px 4px 4px;
-    text-align: center;
-    font-weight: bold;
-    background-color:var(--theme-block-color);
+.navbox-group-odd {
+    background-color: var(--theme-block-color-light);
 }
 
-table.JouhouBlock-Table td {
-    padding: 0 6px 0 6px;
-}
-
-table.JouhouBlock-Table a:hover:not(.active) {
-    text-decoration: none;
+.navbox-group-even {
+    background-color: var(--theme-block-color);
 }
 
 /* ---------------------------------------------------------------- */
@@ -377,7 +369,23 @@ div.Detail-Illustration {
 
 /* ---------------------------------------------------------------- */
 
-/*通用*/
+/* 通用格式 */
+.Content-h1 {
+    font-family: "腾祥沁圆简";
+    font-size: 20px;
+    line-height: 26px;
+}
+
+.Content-p-small {
+    font-size: 14px;
+    line-height: 24px;
+    text-indent: 28px;
+}
+
 .text-center {
-    text-align: center;
+    text-align: center !important;
+}
+
+.text-indent-0 {
+    text-indent: 0 !important;
 }
