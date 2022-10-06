@@ -1,5 +1,6 @@
 @import "normalize.css";
 @import "wikilike.css";
+@import url("https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css");
 
 /*旧版本浏览器兼容*/
 header, section, footer, aside, nav, main, article, figure {

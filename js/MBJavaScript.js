@@ -9,4 +9,10 @@ const gitalk = new Gitalk({
     distractionFreeMode: false  // Facebook-like distraction free mode
 })
 
+var comment = document.createElement("div");
+comment.id = "gitalk-container";
+
+var MainContent = document.getElementsByClassName("MainContent")[0];
+MainContent.appendChild(comment);
+
 gitalk.render('gitalk-container');
