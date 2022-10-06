@@ -62,7 +62,9 @@ $(document).ready(function() {
     //引入页眉、侧边栏
     $("#Header").load("../../template/Header.html", SideBarSlide());
     //引入正文
-    $(".MainContent").load("../../template/Chapter.html");
+    $(".MainContent").load("../../template/Chapter.html", function() {
+        Gitalk();
+    });
 })
 
 function ChapterWrap(type) {
