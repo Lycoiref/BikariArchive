@@ -47,7 +47,7 @@
             repo: 'BikariComment', //仓库名称(GitHub repo)
             owner: 'MysteryBao37', //仓库拥有者(GitHub repo owner)
             admin: ['MysteryBao37'],
-            id: "Demo",      // Ensure uniqueness and length less than 50
+            id: document.title,      // Ensure uniqueness and length less than 50
             distractionFreeMode: false  // Facebook-like distraction free mode
         })
         gitalk.render("gitalk-container");
