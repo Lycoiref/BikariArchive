@@ -22,7 +22,7 @@ header, section, footer, aside, nav, main, article, figure {
 }
 
 body {
-    margin: 0 0 0 0;
+    margin: 0;
     font-family: 'Microsoft Yahei';
     font-size: 16px;
     color: var(--theme-text-color);
