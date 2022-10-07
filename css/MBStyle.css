@@ -28,6 +28,7 @@ body {
     color: var(--theme-text-color);
     background-image: url("../image/background.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
@@ -383,7 +384,8 @@ div.Detail-Illustration {
     content: "";
     display: block;
     margin: -9px -4px 0 -4px;
-    border: 5px solid var(--theme-block-color);
+    padding: 5px;
+    background-color: var(--theme-block-color);
 }
 
 .text-center {
