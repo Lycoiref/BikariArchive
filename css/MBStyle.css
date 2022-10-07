@@ -375,6 +375,18 @@ div.Detail-Illustration {
     text-indent: 28px;
 }
 
+.Coco-Title {
+    display: inline-block;
+    margin-bottom: 4px;
+}
+
+.Coco-Title::after {
+    content: "";
+    display: block;
+    margin: -9px -4px 0 -4px;
+    border: 5px solid var(--theme-block-color);
+}
+
 .text-center {
     text-align: center !important;
 }

@@ -1,5 +1,7 @@
 function BackToTop() {
-    $("html,body").animate({scrollTop:0},200);
+    $("html,body").animate(
+        { scrollTop: 0 },
+        { duration: 200, easing: "swing"});
 }
 
 //侧边栏滑动
@@ -20,4 +22,8 @@ function SideBarSlide() {
             sidebar.style.left = "0px";
         }
     })
+}
+
+function ToRecentUpdate() {
+    $("html,body").animate({scrollTop:$("#UpdateLog").offset().top},200);
 }
