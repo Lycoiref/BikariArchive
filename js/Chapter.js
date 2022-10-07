@@ -63,19 +63,35 @@ $(document).ready(function() {
     $("#Header").load("../../template/Header.html", SideBarSlide());
     //引入正文
     $(".MainContent").load("../../template/Chapter.html");
+
+    //键盘监听
+    document.addEventListener("keypress", function(event) {
+        switch (event.key) {
+            case "a":
+                ChapterWrap(0);
+                break;
+            case "d":
+                ChapterWrap(1);
+                break;
+        }
+    });
 })
 
-function ChapterWrap(type) {
+function ChapterWrap(type)//章节跳转
+{
     //获取下一章节的序号与卷号
     var gekka = order + (type == 0 ? -1 : 1);
     var nextvol = Volume[novel]["Index"][gekka];
-    while (nextvol >= 10) nextvol = Math.trunc(nextvol / 10);
 
-    //章节跳转
-    window.location.href = "../" + Volume[novel]["VolPath"][nextvol - 1] + "/novel_" + Volume[novel]["Index"][gekka] + ".html";
+    //判断下一章节是否存在
+    if (typeof(nextvol) != "undefined") {
+        while (nextvol >= 10) nextvol = Math.trunc(nextvol / 10);
+        window.location.href = "../" + Volume[novel]["VolPath"][nextvol - 1] + "/novel_" + Volume[novel]["Index"][gekka] + ".html";
+    }
 }
 
-function WordCount() {
+function WordCount()//字数统计
+{
     var article = document.getElementsByClassName("NovelText")[0];
 
     var lines = article.getElementsByTagName("p");
