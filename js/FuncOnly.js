@@ -4,22 +4,25 @@ function BackToTop() {
         { duration: 200, easing: "swing"});
 }
 
+//页眉解限
+function HeaderRelease() {
+    let header = document.querySelector(".Header");
+    header.style.position = "relative";
+}
+
 //侧边栏滑动
 function SideBarSlide() {
     document.addEventListener("scroll", function () {
-        //侧边栏
         let header = document.querySelector(".Header");
         let sidebar = document.querySelector(".SideBar");
 
         let mainHeight = header.scrollHeight;
         if (window.pageYOffset > mainHeight) {
-            sidebar.style.position = "fixed";
-            sidebar.style.top = "0px";
-            sidebar.style.left = -window.pageXOffset + "px";
+            sidebar.style.position = "relative";
+            sidebar.style.top = window.pageYOffset - mainHeight + "px";
         } else {
-            sidebar.style.position = "absolute";
-            sidebar.style.top = mainHeight + "px";
-            sidebar.style.left = "0px";
+            sidebar.style.position = "sticky";
+            sidebar.style.top = "0px";
         }
     })
 }

@@ -15,26 +15,7 @@
     <span onclick="ChapterWrap(0)" class="LastChapter" href="javascript::void(0)">上一章</span>
     <span onclick="ChapterWrap(1)" class="NextChapter" href="javascript::void(0)">下一章</span>
 </div>
-<div id="gitalk-container"></div>
 
 <script>
-    //标题
-    document.getElementById("Title").innerHTML = document.title.match("(.*) - 微光茶馆")[1];
-    //所属卷
-    document.getElementById("Volume").innerHTML = "<" + Volume[novel]["VolList"][vol - 1] + ">";
-    //引入正文
-    $(".NovelText").load(index + ".txt", function(){
-        //字数统计
-        document.getElementById("WordCount").innerHTML = "字数：" + WordCount();
-    });
-    
-    //按钮可用与否
-    if (order <= 0) {
-        document.getElementsByClassName("LastChapter")[0].disabled = true;
-        document.getElementsByClassName("LastChapter")[1].style.display = "none";
-    }
-    if (order >= Volume[novel]["Index"].length - 1) {
-        document.getElementsByClassName("NextChapter")[0].disabled = true;
-        document.getElementsByClassName("NextChapter")[1].style.display = "none";
-    }
+
 </script>

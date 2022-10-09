@@ -104,11 +104,18 @@ td {
 
 /* ---------------------------------------------------------------- */
 
+/* 网页主体 */
+.Nakami {
+    display: flex;
+}
+
+/* ---------------------------------------------------------------- */
+
 /* 侧边栏 */
 .SideBar {
-    float: left;
     position: sticky;
     top: 96px;
+    height: 100%;
     margin: 32px 0 0 32px;
 }
 
@@ -152,7 +159,7 @@ td {
 /* 正文内容 */
 div.MainContent {
     min-width: 672px;
-    margin: 32px 0 32px 256px;
+    margin: 32px 0 32px 32px;
     padding: 16px 32px 16px 32px;
     width: min(calc(100vw - 288px), 1024px);
     border-radius: 16px;
@@ -183,7 +190,6 @@ article.ContentExtraArea {
 /* 主页内容盒 */
 div.Content-Table {
     width: auto;
-    height: calc(100% - 32px);
     overflow: auto;
     zoom: 1;
     margin: 16px 0 16px 0;
@@ -191,6 +197,10 @@ div.Content-Table {
     border: 1px solid var(--theme-border-color);
     border-left: 32px solid var(--theme-block-color);
     background-color: var(--theme-background-color);
+}
+
+.row div.Content-Table {
+    height: calc(100% - 32px);
 }
 
 div.Content-Table p {

@@ -59,10 +59,30 @@ $(document).ready(function() {
     while (vol >= 10) vol = Math.trunc(vol / 10);
     order = Volume[novel]["Index"].indexOf(index);
 
-    //引入页眉、侧边栏
-    $("#Header").load("../../template/Header.html", SideBarSlide());
-    //引入正文
-    $(".MainContent").load("../../template/Chapter.html");
+    //引入页眉、侧边栏、正文
+    $(".Header").load("../../template/Header.html", HeaderRelease());
+    $(".SideBar").load("../../template/SideBar.html", SideBarSlide());
+    $(".MainContent").load("../../template/Chapter.html", function(){
+        //标题
+        document.getElementById("Title").innerHTML = document.title.match("(.*) - 微光茶馆")[1];
+        //所属卷
+        document.getElementById("Volume").innerHTML = "<" + Volume[novel]["VolList"][vol - 1] + ">";
+        //引入正文
+        $(".NovelText").load(index + ".txt", function(){
+            //字数统计
+            document.getElementById("WordCount").innerHTML = "字数：" + WordCount();
+        });
+        
+        //按钮可用与否
+        if (order <= 0) {
+            document.getElementsByClassName("LastChapter")[0].disabled = true;
+            document.getElementsByClassName("LastChapter")[1].style.display = "none";
+        }
+        if (order >= Volume[novel]["Index"].length - 1) {
+            document.getElementsByClassName("NextChapter")[0].disabled = true;
+            document.getElementsByClassName("NextChapter")[1].style.display = "none";
+        }
+    });
 
     //键盘监听
     document.addEventListener("keypress", function(event) {
