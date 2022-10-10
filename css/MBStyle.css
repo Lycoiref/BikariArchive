@@ -372,6 +372,22 @@ div.Detail-Illustration {
 
 /* ---------------------------------------------------------------- */
 
+/* 菜单 */
+
+/* 阴影层 */
+.layer-shadow {
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 256;
+}
+
+/* ---------------------------------------------------------------- */
+
 /* 通用格式 */
 .Content-h1 {
     font-family: "腾祥沁圆简";

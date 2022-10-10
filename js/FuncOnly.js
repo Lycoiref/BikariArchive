@@ -7,11 +7,27 @@ function BackToTop() {
 
 //打开设置
 function OpenSetting() {
+    //添加阴影层
+    var shadow = document.createElement("div");
+    shadow.className = "layer-shadow";
+    shadow.onclick = function() {
+        CloseSetting();
+    };
+    document.body.appendChild(shadow);
+
+    //添加主体
     var setting = document.createElement("div");
     setting.className = "Setting";
     document.body.appendChild(setting);
 
+    //加载设置页面
     $(".Setting").load(document.location.origin.toString() + "/template/Setting.html");
+}
+
+//关闭设置
+function CloseSetting() {
+    $(".Setting").remove();
+    $(".layer-shadow").remove();
 }
 
 //页眉解限
