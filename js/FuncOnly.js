@@ -1,7 +1,17 @@
+//返回顶部
 function BackToTop() {
     $("html,body").animate(
         { scrollTop: 0 },
         { duration: 200, easing: "swing"});
+}
+
+//打开设置
+function OpenSetting() {
+    var setting = document.createElement("div");
+    setting.className = "Setting";
+    document.body.appendChild(setting);
+
+    $(".Setting").load(document.location.origin.toString() + "/template/Setting.html");
 }
 
 //页眉解限
@@ -25,8 +35,4 @@ function SideBarSlide() {
             sidebar.style.top = "0px";
         }
     })
-}
-
-function ToRecentUpdate() {
-    $("html,body").animate({scrollTop:$("#UpdateLog").offset().top},200);
 }
