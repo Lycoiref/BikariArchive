@@ -1,0 +1,63 @@
+<span class="Content-h1 Coco-Title">角色上传</span>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="input-box">
+            <span class="input-name">名称</span>
+            <div class="input-line"></div>
+            <input class="input-shortcut" style="width: 70%" placeholder="姓名／设定名称">
+        </div>
+        <div class="input-box">
+            <span class="input-name">介绍</span>
+            <div class="input-line"></div>
+            <input class="input-shortcut" style="width: 70%;" placeholder="对情报的简要描述">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="input-box">
+            <span class="input-name">能力名</span>
+            <div class="input-line"></div>
+            <input class="input-shortcut" id="shortcut-LastChapter" value="">
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="input-box">
+            <span class="input-name">等级</span>
+            <div class="input-line"></div>
+            <input class="input-shortcut" id="shortcut-NextChapter" placeholder="Star *">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="input-box">
+            <span class="input-name">描述</span>
+            <div class="input-line"></div>
+            <input class="input-shortcut" style="width: 70%;" placeholder="对能力机制的描述">
+        </div>
+    </div>
+</div>
+
+<div class="ChapterWrapBox-Bottom">
+    <span onclick="ChapterWrap(0)" class="LastChapter" href="javascript::void(0)">上传</span>
+</div>
+
+
+<style>
+div.ChapterWrapBox-Bottom {
+    display: flex;
+    justify-content: center;
+}
+
+span.LastChapter, span.NextChapter {
+    margin: 16px 36px 16px 36px;
+    padding: 16px 64px;
+    border: 2px solid var(--theme-border-color);
+    border-radius: 16px;
+    background-color: var(--theme-block-color);
+    font-weight: bold;
+    color: rgb(96, 96, 96);
+    cursor: pointer;
+}
+</style>

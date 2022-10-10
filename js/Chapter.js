@@ -71,6 +71,10 @@ $(document).ready(function() {
         $(".NovelText").load(index + ".txt", function(){
             //字数统计
             document.getElementById("WordCount").innerHTML = "字数：" + WordCount();
+            //字体选择
+            Reader.SetFontFamily(localStorage.getItem("FontFamilyType"));
+            //字体大小
+            Reader.SetFontSize(localStorage.getItem("FontSizeType"));
         });
         
         //按钮可用与否
@@ -85,12 +89,12 @@ $(document).ready(function() {
     });
 
     //键盘监听
-    document.addEventListener("keypress", function(event) {
+    document.addEventListener("keydown", function(event) {
         switch (event.key) {
-            case "a":
+            case localStorage.getItem("shortcut-LastChapter"):
                 ChapterWrap(0);
                 break;
-            case "d":
+            case localStorage.getItem("shortcut-NextChapter"):
                 ChapterWrap(1);
                 break;
         }
