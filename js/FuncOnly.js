@@ -11,23 +11,6 @@ function HeaderRelease() {
     header.style.position = "relative";
 }
 
-//侧边栏滑动
-function SideBarSlide() {
-    document.addEventListener("scroll", function () {
-        let header = document.querySelector(".Header");
-        let sidebar = document.querySelector(".SideBar");
-
-        let mainHeight = header.scrollHeight;
-        if (window.pageYOffset > mainHeight) {
-            sidebar.style.position = "relative";
-            sidebar.style.top = window.pageYOffset - mainHeight + "px";
-        } else {
-            sidebar.style.position = "sticky";
-            sidebar.style.top = "0px";
-        }
-    })
-}
-
 /* ---------------------------------------------------------------- */
 //设置
 var Setting = new Object;
@@ -68,8 +51,8 @@ Setting.Init = function() {
         Setting.Close();
     });
 
-    //侧边栏位置
-    SideBar.SetSide(localStorage.getItem("SideBarSide"));
+    //页面布局
+    Nakami.Init();
 
     //快捷键
     ShortCut.Init();
@@ -100,12 +83,21 @@ Setting.Close = function() {
 }
 
 /* ---------------------------------------------------------------- */
-//侧边栏
-var SideBar = new Object;
+//内容
+var Nakami = new Object;
 
-SideBar.SetSide = function(index) {
+//初始化
+Nakami.Init = function() {
+    this.SetLayout(localStorage.getItem("LayoutStyle"));
+    window.addEventListener("resize", ()=>{
+        Nakami.LayoutChange();
+    });
+}
+
+//页面布局
+Nakami.SetLayout = function(index) {
     if (index === null) index = "0";
-    localStorage.setItem("SideBarSide", index);
+    localStorage.setItem("LayoutStyle", index);
     
     //改变设置栏样式
     let BarSideBox = document.getElementsByClassName("input-barside")[0];
@@ -120,22 +112,102 @@ SideBar.SetSide = function(index) {
     }
 
     //获取侧边栏、主要内容
-    let nakami = document.querySelector(".Nakami");
-    let sideBar = document.querySelector(".SideBar");
-    let mainContent = document.querySelector(".MainContent");
-    if (typeof sideBar !== "undefined") {
-        //根据index选择样式
-        switch(index.toString()) {
-            case "0":
-                nakami.removeChild(mainContent);
-                nakami.appendChild(mainContent);
-                break;
-            case "1":
-                nakami.removeChild(sideBar);
-                nakami.appendChild(sideBar);
-                break;
+    var nakami = document.querySelector(".Nakami");
+    var sideBar = document.querySelector(".SideBar");
+    var mainContent = document.querySelector(".MainContent");
+
+    let widthList = [
+        getComputedStyle(sideBar).width,
+        getComputedStyle(mainContent).maxWidth,
+        getComputedStyle(mainContent).minWidth
+    ].map((item)=>{
+        return item.substring(0, item.length - 2);
+    });
+
+    //获取页面最大、最小宽度
+    const max_width = 32 * 3 + widthList[1] + widthList[2];
+    const min_width = 32 * 3 + widthList[1] + widthList[3];
+
+    //根据index选择样式
+    switch(index.toString()) {
+        /* 居中 */case "0":;
+        /* 靠左 */case "1": {
+            nakami.removeChild(mainContent);
+            nakami.appendChild(mainContent);
+            break;
+        }
+        /* 靠右 */case "2": {
+            nakami.removeChild(sideBar);
+            nakami.appendChild(sideBar);
+            break;
         }
     }
+
+    //响应浏览器尺寸的调整，改变对齐方式
+    //内部定义，用于获取局部变量
+    Nakami.LayoutChange = function() {
+        switch(index.toString()) {
+            /* 居中 */case "0": {
+                nakami.style.justifyContent = "center";
+                if (window.innerWidth > min_width) {
+                    nakami.style.justifyContent = "center";
+                }
+                else {
+                    nakami.style.justifyContent = "left";
+                }
+                break;
+            }
+            /* 靠左 */case "1": {
+                nakami.style.justifyContent = "left";
+                break;
+            }
+            /* 靠右 */case "2": {
+                if (window.innerWidth > max_width) {
+                    nakami.style.justifyContent = "right";
+                }
+                else {
+                    nakami.style.justifyContent = "left";
+                }
+                break;
+            }
+        }
+    };
+    
+    //根据index改变页面布局
+    this.LayoutChange();
+}
+
+/* ---------------------------------------------------------------- */
+//侧边栏
+var SideBar = new Object;
+
+//滑动
+SideBar.SetSlide = function(state) {
+    let header = document.querySelector(".Header");
+    let sidebar = document.querySelector(".SideBar");
+    switch(state) {
+        case true: {
+            document.addEventListener("scroll", function () {
+                let mainHeight = header.scrollHeight;
+                if (window.pageYOffset > mainHeight) {
+                    sidebar.style.position = "relative";
+                    sidebar.style.top = window.pageYOffset - mainHeight + "px";
+                } else {
+                    sidebar.style.position = "sticky";
+                    sidebar.style.top = "0px";
+                }
+            });
+            break;
+        }
+        case false: {
+            document.removeEventListener("scroll");
+            sidebar.style.position = "sticky";
+            sidebar.style.top = "0px";
+            break;
+        }
+
+    }
+
 }
 
 /* ---------------------------------------------------------------- */

@@ -61,7 +61,7 @@ $(document).ready(function() {
 
     //引入页眉、侧边栏、正文
     $(".Header").load("../../template/Header.html", HeaderRelease());
-    $(".SideBar").load("../../template/SideBar.html", SideBarSlide());
+    $(".SideBar").load("../../template/SideBar.html", SideBar.SetSlide(true));
     $(".MainContent").load("../../template/Chapter.html", function(){
         //标题
         document.getElementById("Title").innerHTML = document.title.match("(.*) - 微光茶馆")[1];

@@ -109,6 +109,9 @@ inf {
 /* 网页主体 */
 .Nakami {
     display: flex;
+    justify-content: center;
+    gap: 32px;
+    padding: 0 32px;
 }
 
 /* ---------------------------------------------------------------- */
@@ -118,7 +121,7 @@ div.SideBar {
     position: sticky;
     top: 96px;
     height: 100%;
-    margin: 32px 0 0 32px;
+    margin: 32px 0 0 0;
 }
 
 div.SideBar-Block {
@@ -162,7 +165,7 @@ div.SideBar-Block {
 div.MainContent {
     min-width: 672px;
     max-width: 1024px;
-    margin: 32px 0 32px 32px;
+    margin: 32px 0 0 0;
     padding: 16px 32px 16px 32px;
     width: calc(100vw - 288px);
     border-radius: 16px;
@@ -474,11 +477,7 @@ div.input-box {
     cursor: pointer;
 }
 
-.input-barside li {
-    width: 50%;
-}
-
-.input-fontfamily li, .input-fontsize li {
+.input-barside li, .input-fontfamily li, .input-fontsize li {
     width: 33.333%;
 }
 
