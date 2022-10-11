@@ -71,10 +71,8 @@ $(document).ready(function() {
         $(".NovelText").load(index + ".txt", function(){
             //字数统计
             document.getElementById("WordCount").innerHTML = "字数：" + WordCount();
-            //字体选择
-            Reader.SetFontFamily(localStorage.getItem("FontFamilyType"));
-            //字体大小
-            Reader.SetFontSize(localStorage.getItem("FontSizeType"));
+            //设置项初始化
+            Setting.Init();
         });
         
         //按钮可用与否

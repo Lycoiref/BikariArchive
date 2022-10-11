@@ -29,17 +29,18 @@ function SideBarSlide() {
 }
 
 /* ---------------------------------------------------------------- */
+//设置
 var Setting = new Object;
 
 //打开设置
 Setting.Open = function() {
     //添加阴影层
-    var shadow = document.createElement("div");
-    shadow.className = "modal-mask";
-    shadow.onclick = function() {
+    var mask = document.createElement("div");
+    mask.className = "modal-mask";
+    mask.onclick = function() {
         Setting.Close();
     };
-    document.body.appendChild(shadow);
+    document.body.appendChild(mask);
 
     //添加主体
     var setting = document.createElement("div");
@@ -50,55 +51,127 @@ Setting.Open = function() {
     $(".modal-setting").load(document.location.origin.toString() + "/template/Setting.html", function(){
         Setting.Init();
     });
+
+    //不知道为什么但要加载一下
+    getComputedStyle(setting).transition;
+
+    //触发css动画
+    setting.style.top = "50%";
+    setting.style.opacity = 1;
+    mask.style.opacity = 0.5;
 }
 
 //初始化
 Setting.Init = function() {
-    //快捷键设置
-    let shortcut = $(".input-shortcut");
-    let count = shortcut.length;
-    for (let i = 0; i < count; i++) {
-        //获取id
-        let id = shortcut[i].getAttribute("id");
+    //关闭按钮
+    $(".setting-close").on("click", function() {
+        Setting.Close();
+    });
 
-        //读取本地变量，若不存在则进行初始化
-        let keyStr = localStorage.getItem(id);
-        if (keyStr === null) {
-            localStorage.setItem(id, Gekka.strToKey(shortcut[i].value));
-        }
-        else {
-            shortcut[i].value = Gekka.keyToStr(keyStr);
-        }
+    //侧边栏位置
+    SideBar.SetSide(localStorage.getItem("SideBarSide"));
 
-        //输入逻辑
-        shortcut[i].addEventListener("keypress", (event) => {
-            shortcut[i].value = "";
-        });
-        shortcut[i].addEventListener("keyup", (event) => {
-            shortcut[i].value = Gekka.keyToStr(event.key);
-            localStorage.setItem(id, event.key);
-        });
-    }
+    //快捷键
+    ShortCut.Init();
+
+    //字体选择
+    Reader.SetFontFamily(localStorage.getItem("FontFamilyType"));
 
     //字体大小
-    let FontFamilyList = document.getElementsByClassName("input-fontfamily")[0].getElementsByTagName("li");
-    FontFamilyList[localStorage.getItem("FontFamilyType")].className = "active";
-
-    //字体大小
-    let FontSizeList = document.getElementsByClassName("input-fontsize")[0].getElementsByTagName("li");
-    FontSizeList[localStorage.getItem("FontSizeType")].className = "active";
+    Reader.SetFontSize(localStorage.getItem("FontSizeType"));
 }
 
 //关闭设置
 Setting.Close = function() {
-    $(".modal-setting").remove();
-    $(".modal-mask").remove();
+    let setting = $(".modal-setting")[0];
+    let mask = $(".modal-mask")[0];
+
+    //触发css动画
+    setting.style.top = "20%";
+    setting.style.opacity = 0;
+    mask.style.opacity = 0;
+
+    let duration = getComputedStyle(setting).transitionDuration;
+    duration = duration.slice(0, duration.length - 1);
+    setTimeout(function() {
+        setting.remove();
+        mask.remove();
+    }, duration * 1000);
 }
 
-//用于处理快捷键
-var Gekka = new Object;
+/* ---------------------------------------------------------------- */
+//侧边栏
+var SideBar = new Object;
 
-Gekka.keyToStr = function(key) {
+SideBar.SetSide = function(index) {
+    if (index === null) index = "0";
+    localStorage.setItem("SideBarSide", index);
+    
+    //改变设置栏样式
+    let BarSideBox = document.getElementsByClassName("input-barside")[0];
+    if (typeof BarSideBox !== "undefined") {
+        let BarSideList = BarSideBox.getElementsByTagName("li");
+
+        let item = BarSideList.length;
+        for (let i = 0; i < item; i++) {
+            BarSideList[i].className = "";
+        }
+        BarSideList[Number(index)].className = "active";
+    }
+
+    //获取侧边栏、主要内容
+    let nakami = document.querySelector(".Nakami");
+    let sideBar = document.querySelector(".SideBar");
+    let mainContent = document.querySelector(".MainContent");
+    if (typeof sideBar !== "undefined") {
+        //根据index选择样式
+        switch(index.toString()) {
+            case "0":
+                nakami.removeChild(mainContent);
+                nakami.appendChild(mainContent);
+                break;
+            case "1":
+                nakami.removeChild(sideBar);
+                nakami.appendChild(sideBar);
+                break;
+        }
+    }
+}
+
+/* ---------------------------------------------------------------- */
+//快捷键
+var ShortCut = new Object;
+
+ShortCut.Init = function() {
+    let shortcut = $(".input-shortcut");
+    if (typeof shortcut !== "undefined") {
+        let count = shortcut.length;
+        for (let i = 0; i < count; i++) {
+            //获取id
+            let id = shortcut[i].getAttribute("id");
+    
+            //读取本地变量，若不存在则进行初始化
+            let keyStr = localStorage.getItem(id);
+            if (keyStr === null) {
+                localStorage.setItem(id, this.strToKey(shortcut[i].value));
+            }
+            else {
+                shortcut[i].value = this.keyToStr(keyStr);
+            }
+    
+            //输入逻辑
+            shortcut[i].addEventListener("keypress", (event) => {
+                shortcut[i].value = "";
+            });
+            shortcut[i].addEventListener("keyup", (event) => {
+                shortcut[i].value = this.keyToStr(event.key);
+                localStorage.setItem(id, event.key);
+            });
+        }
+    }
+}
+
+ShortCut.keyToStr = function(key) {
     let str = key;
     switch (str) {
         case "Control": str = "Ctrl"; break;
@@ -115,7 +188,7 @@ Gekka.keyToStr = function(key) {
     return str;
 }
 
-Gekka.strToKey = function(str) {
+ShortCut.strToKey = function(str) {
     let key = str;
     switch (key) {
         case "Ctrl": key = "Control"; break;
@@ -137,8 +210,9 @@ var Reader = new Object;
 
 //字体选择
 Reader.SetFontFamily = function(index) {
+    if (index === null) index = "0";
     localStorage.setItem("FontFamilyType", index);
-
+    
     //改变设置栏样式
     let FontFamilyBox = document.getElementsByClassName("input-fontfamily")[0];
     if (typeof FontFamilyBox !== "undefined") {
@@ -148,7 +222,7 @@ Reader.SetFontFamily = function(index) {
         for (let i = 0; i < item; i++) {
             FontFamilyList[i].className = "";
         }
-        FontFamilyList[index].className = "active";
+        FontFamilyList[Number(index)].className = "active";
     }
 
     //寻找正文
@@ -174,6 +248,7 @@ Reader.SetFontFamily = function(index) {
 
 //字体大小
 Reader.SetFontSize = function(index) {
+    if (index === null) index = "0";
     localStorage.setItem("FontSizeType", index);
 
     //改变设置栏样式
@@ -185,7 +260,7 @@ Reader.SetFontSize = function(index) {
         for (let i = 0; i < item; i++) {
             FontSizeList[i].className = "";
         }
-        FontSizeList[index].className = "active";
+        FontSizeList[Number(index)].className = "active";
     }
 
     //寻找正文
@@ -220,8 +295,8 @@ Reader.SetFontSize = function(index) {
 }
 
 /* ---------------------------------------------------------------- */
-var Form = new Object;
 //应付用表单页
+var Form = new Object;
 
 Form.Open = function() {
     //添加阴影层
@@ -253,6 +328,7 @@ Form.Close = function() {
 }
 
 /* ---------------------------------------------------------------- */
+//Cookie
 var Cookie = new Object;
 
 //设置cookie
