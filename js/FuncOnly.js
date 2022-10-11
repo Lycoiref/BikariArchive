@@ -121,12 +121,12 @@ Nakami.SetLayout = function(index) {
         getComputedStyle(mainContent).maxWidth,
         getComputedStyle(mainContent).minWidth
     ].map((item)=>{
-        return item.substring(0, item.length - 2);
+        return Number(item.substring(0, item.length - 2));
     });
 
     //获取页面最大、最小宽度
-    const max_width = 32 * 3 + widthList[1] + widthList[2];
-    const min_width = 32 * 3 + widthList[1] + widthList[3];
+    const max_width = 32 * 3 + widthList[0] + widthList[1];
+    const min_width = 32 * 3 + widthList[0] + widthList[2];
 
     //根据index选择样式
     switch(index.toString()) {
@@ -148,7 +148,6 @@ Nakami.SetLayout = function(index) {
     Nakami.LayoutChange = function() {
         switch(index.toString()) {
             /* 居中 */case "0": {
-                nakami.style.justifyContent = "center";
                 if (window.innerWidth > min_width) {
                     nakami.style.justifyContent = "center";
                 }
