@@ -8,7 +8,7 @@ header, section, footer, aside, nav, main, article, figure {
 
 :root {
     --size-width-min: 672px;
-    --size-width-min-mobile: 480px;
+    --size-width-min-mobile: 320px;
     --theme-text-color:rgb(36, 33, 30); /* 文本色 */
     --theme-text-color-light:rgb(212, 155, 65); /* 文本色-高亮 */
     --theme-link-color:rgb(63, 81, 181); /* 超链接色 */
@@ -104,8 +104,10 @@ inf {
 #BikariTitle {
     float: left;
     position: absolute;
-    left: 30%;
+    left: 50%;
+    min-width: 320px;
     width: 40%;
+    transform: translate(-50%, 0);
     padding: 16px 0 16px 0;
     background-color: var(--theme-block-color-light);
     text-align: center;
@@ -300,12 +302,12 @@ ul.Volume {
 
 li.Action {
     list-style-type: none;
-    margin: 8px 0 8px 64px;
+    margin: 8px 0 8px 48px;
     font-size: 17px;
 }
 
 li.Chapter {
-    margin: 8px 0 8px 128px;
+    margin: 8px 0 8px 120px;
     font-size: 14px;
 }
 
@@ -412,7 +414,7 @@ div.modal-box {
     position: fixed;
     top: 20%;
     left: 50%;
-    width: 512px;
+    max-width: 512px;
     opacity: 0;
     transform: translate(-50%, -50%);
     transition: all .4s;
@@ -577,34 +579,38 @@ div.input-box {
 /* 媒体查询 */
 @media (max-width: 767px) {
     .Header {
-        min-width: calc(var(--size-width-min-mobile) + 64px);
+        min-width: var(--size-width-min-mobile);
         width: 100vw;
     }
 
     div.Nakami {
         flex-direction: column;
         gap: 0;
+        padding: 0;
     }
 
     div.SideBar {
         position: static;
         min-width: var(--size-width-min-mobile);
         max-width: none;
-        width: calc(100vw - 64px);
+        width: 100vw;
+        padding: 0 32px;
     }
 
     div.MainContent {
         min-width: var(--size-width-min-mobile);
-        width: calc(100vw - 64px);
-    }
-
-    #Profile-Icon {
-        width: 128px;
+        width: 100vw;
+        margin-bottom: 0;
+        border-radius: 0px;
     }
 
     div.JouhouBlock {
         flex-direction: column;
         align-items: center;
         gap: 32px;
+    }
+
+    div.modal-box {
+        width: 100vw;
     }
 }
