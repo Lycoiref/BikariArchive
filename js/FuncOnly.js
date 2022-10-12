@@ -18,7 +18,7 @@ function HeaderRelease() {
     header.style.position = "relative";
 }
 
-//高亮下划线
+//主题颜色
 function SetTheme(index) {
     if (index === null) index = "0";
     localStorage.setItem("Theme", index);
@@ -31,6 +31,66 @@ function SetTheme(index) {
         /* 早樱 */ case "3": theme = "Hayasakura"; break;
     }
     document.documentElement.setAttribute("theme", theme);
+
+    //获取主题对应的文本色-高亮
+    let QRColor = getComputedStyle(document.documentElement).getPropertyValue("--theme-text-color-light");
+    
+    //修改二维码颜色
+    ChangeImageColor("image/QRCode_Site.png", QRColor, (imageURL)=> {
+        let QRCode = document.getElementById("QRCode-Site");
+        QRCode.src = imageURL;
+    });
+}
+
+//改变图片颜色
+function ChangeImageColor(url, color, callback) {
+	let img = new Image();
+    img.src = url;
+
+    let [newR, newG, newB, newA] = RGBSelector(color);
+
+    img.onload = function() {
+    	let width = img.width;
+        let height = img.height;
+        let canvas = document.createElement("canvas");
+        let ctx = canvas.getContext("2d");
+        
+        canvas.width = width;
+        canvas.height = height;
+        
+        ctx.drawImage(img, 0, 0, width, height);
+        
+        let imageData = ctx.getImageData(0, 0, width, height);
+        let data = imageData.data;
+        
+        for (let i = 0; i < data.length; ) {
+			let r = data[i++],
+         		g = data[i++],
+                b = data[i++],
+                a = data[i++];
+            if (a != 0) {
+            	data[i - 4] = newR;
+               	data[i - 3] = newG;
+                data[i - 2] = newB;
+                if (typeof newA !== "undefined") {
+                    data[i - 1] = newA;
+                }
+            }
+        }
+        
+        ctx.putImageData(imageData, 0, 0);
+        
+        let imageURL = canvas.toDataURL();
+        callback && callback(imageURL);
+    }
+}
+
+//输入rgb字符串，返回数组
+function RGBSelector(str) {
+    var arr = str.slice(4, str.length - 1).split(",");
+    return arr.map((item)=>{
+        return Number(item);
+    });
 }
 
 /* ---------------------------------------------------------------- */
@@ -244,9 +304,7 @@ SideBar.SetSlide = function(state) {
             sidebar.style.top = "0px";
             break;
         }
-
     }
-
 }
 
 /* ---------------------------------------------------------------- */
