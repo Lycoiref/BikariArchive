@@ -32,14 +32,16 @@ function SetTheme(index) {
     }
     document.documentElement.setAttribute("theme", theme);
 
-    //获取主题对应的文本色-高亮
-    let QRColor = getComputedStyle(document.documentElement).getPropertyValue("--theme-text-color-light");
-    
-    //修改二维码颜色
-    ChangeImageColor("image/QRCode_Site.png", QRColor, (imageURL)=> {
-        let QRCode = document.getElementById("QRCode-Site");
-        QRCode.src = imageURL;
-    });
+    let QRCode = document.getElementById("QRCode-Site");
+    if (QRCode !== null) {
+        //获取主题对应的文本色-高亮
+        let QRColor = getComputedStyle(document.documentElement).getPropertyValue("--theme-text-color-light");
+        
+        //修改二维码颜色
+        ChangeImageColor("image/QRCode_Site.png", QRColor, (imageURL)=> {
+            QRCode.src = imageURL;
+        });
+    }
 }
 
 //改变图片颜色
@@ -288,7 +290,10 @@ SideBar.SetSlide = function(state) {
         case true: {
             document.addEventListener("scroll", function () {
                 let mainHeight = header.scrollHeight;
-                if (window.pageYOffset > mainHeight) {
+                if (window.innerWidth < 768) {
+                    sidebar.style.position = "static";
+                }
+                else if (window.pageYOffset > mainHeight) {
                     sidebar.style.position = "relative";
                     sidebar.style.top = window.pageYOffset - mainHeight + "px";
                 } else {

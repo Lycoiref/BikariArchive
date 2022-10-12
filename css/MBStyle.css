@@ -3,7 +3,7 @@
 
 /*旧版本浏览器兼容*/
 header, section, footer, aside, nav, main, article, figure {
-    display: block; 
+    display: block;
 }
 
 :root {
@@ -148,16 +148,19 @@ inf {
 
 /* 侧边栏 */
 div.SideBar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     position: sticky;
     top: 96px;
+    min-width: 192px;
+    max-width: 192px;
     height: 100%;
     margin: 32px 0 0 0;
 }
 
 div.SideBar-Block {
     overflow: auto;
-    width: 192px;
-    margin: 0 0 24px 0;
     padding: 0;
     border: 1px solid var(--theme-border-color);
     border-radius: 16px;
@@ -165,7 +168,6 @@ div.SideBar-Block {
 }
 
 .demo-vertical {
-    width: 190px;
     margin: 0;
     padding: 0;
     background-color: transparent;
@@ -174,9 +176,9 @@ div.SideBar-Block {
 
 .demo-vertical li a {
     display: block;
-    color: black;
     padding: 8px 0 8px 16px;
 	border: 0px;
+    color: var(--theme-text-color);
 }
 
 .demo-vertical li a:hover:not(.active) {
@@ -263,7 +265,7 @@ ul.Content-Cats li {
     line-height: 24px;
 }
 
-ul.Content-Cats li+li {
+ul.Content-Cats li + li {
     margin-left: 12px;
 }
 
@@ -565,4 +567,30 @@ div.input-box {
 
 .text-indent-0 {
     text-indent: 0 !important;
+}
+
+/* ---------------------------------------------------------------- */
+
+/* 媒体查询 */
+@media (max-width: 767px) {
+    .Header {
+        min-width: calc(672px + 64px);
+        width: 100vw;
+    }
+
+    div.Nakami {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    div.SideBar {
+        position: static;
+        min-width: 672px;
+        max-width: none;
+        width: calc(100vw - 64px);
+    }
+
+    div.MainContent {
+        width: calc(100vw - 64px);
+    }
 }
