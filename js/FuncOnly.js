@@ -1,3 +1,10 @@
+const storage = {
+    "input-layout": "LayoutStyle",
+    "input-theme": "Theme",
+    "input-fontfamily": "FontFamily",
+    "input-fontsize": "FontSize"
+}
+
 //返回顶部
 function BackToTop() {
     $("html,body").animate(
@@ -9,6 +16,21 @@ function BackToTop() {
 function HeaderRelease() {
     let header = document.querySelector(".Header");
     header.style.position = "relative";
+}
+
+//高亮下划线
+function SetTheme(index) {
+    if (index === null) index = "0";
+    localStorage.setItem("Theme", index);
+	
+    let theme;
+    switch (index.toString()) {
+        /* 山吹 */ case "0": theme = "Yamabuki"; break
+        /* 初空 */ case "1": theme = "Hatsusora"; break;
+        /* 若竹 */ case "2": theme = "Wakatake"; break;
+        /* 早樱 */ case "3": theme = "Hayasakura"; break;
+    }
+    document.documentElement.setAttribute("theme", theme);
 }
 
 /* ---------------------------------------------------------------- */
@@ -32,6 +54,33 @@ Setting.Open = function() {
 
     //加载设置页面
     $(".modal-setting").load(document.location.origin.toString() + "/template/Setting.html", function(){
+        HobAndClick("input-layout", "Nakami.SetLayout");
+        HobAndClick("input-theme", "SetTheme", "Theme");
+        HobAndClick("input-fontfamily", "Reader.SetFontFamily");
+        HobAndClick("input-fontsize", "Reader.SetFontSize");
+
+        function HobAndClick(className, func) {
+            var input = document.querySelector("." + className).children;
+            for (let i = 0; i < input.length; i++) {
+                let hob = document.createElement("span");
+                hob.className = "hob";
+                input.item(i).appendChild(hob);
+                input.item(i).addEventListener("click", ()=>{
+                    //改变样式
+                    for (let j = 0; j < input.length; j++) {
+                        input.item(j).className = "";
+                    }
+                    input.item(i).className = "active";
+                    //执行对应函数
+                    eval(func + "(" + i + ")");
+                });
+            }
+            //高亮修正
+            for (let i = 0; i < input.length; i++) {
+                input.item(i).className = "";
+            }
+            input.item(Number(localStorage.getItem(storage[className]))).className = "active";
+        }
         Setting.Init();
     });
 
@@ -54,14 +103,17 @@ Setting.Init = function() {
     //页面布局
     Nakami.Init();
 
+    //主题颜色
+    SetTheme(localStorage.getItem("Theme"));
+
     //快捷键
     ShortCut.Init();
 
     //字体选择
-    Reader.SetFontFamily(localStorage.getItem("FontFamilyType"));
+    Reader.SetFontFamily(localStorage.getItem("FontFamily"));
 
     //字体大小
-    Reader.SetFontSize(localStorage.getItem("FontSizeType"));
+    Reader.SetFontSize(localStorage.getItem("FontSize"));
 }
 
 //关闭设置
@@ -98,18 +150,6 @@ Nakami.Init = function() {
 Nakami.SetLayout = function(index) {
     if (index === null) index = "0";
     localStorage.setItem("LayoutStyle", index);
-    
-    //改变设置栏样式
-    let BarSideBox = document.getElementsByClassName("input-barside")[0];
-    if (typeof BarSideBox !== "undefined") {
-        let BarSideList = BarSideBox.getElementsByTagName("li");
-
-        let item = BarSideList.length;
-        for (let i = 0; i < item; i++) {
-            BarSideList[i].className = "";
-        }
-        BarSideList[Number(index)].className = "active";
-    }
 
     //获取侧边栏、主要内容
     var nakami = document.querySelector(".Nakami");
@@ -282,19 +322,7 @@ var Reader = new Object;
 //字体选择
 Reader.SetFontFamily = function(index) {
     if (index === null) index = "0";
-    localStorage.setItem("FontFamilyType", index);
-    
-    //改变设置栏样式
-    let FontFamilyBox = document.getElementsByClassName("input-fontfamily")[0];
-    if (typeof FontFamilyBox !== "undefined") {
-        let FontFamilyList = FontFamilyBox.getElementsByTagName("li");
-
-        let item = FontFamilyList.length;
-        for (let i = 0; i < item; i++) {
-            FontFamilyList[i].className = "";
-        }
-        FontFamilyList[Number(index)].className = "active";
-    }
+    localStorage.setItem("FontFamily", index);
 
     //寻找正文
     let novel = document.getElementsByClassName("NovelText")[0];
@@ -320,19 +348,7 @@ Reader.SetFontFamily = function(index) {
 //字体大小
 Reader.SetFontSize = function(index) {
     if (index === null) index = "0";
-    localStorage.setItem("FontSizeType", index);
-
-    //改变设置栏样式
-    let FontSizeBox = document.getElementsByClassName("input-fontsize")[0];
-    if (typeof FontSizeBox !== "undefined") {
-        let FontSizeList = FontSizeBox.getElementsByTagName("li");
-
-        let item = FontSizeList.length;
-        for (let i = 0; i < item; i++) {
-            FontSizeList[i].className = "";
-        }
-        FontSizeList[Number(index)].className = "active";
-    }
+    localStorage.setItem("FontSize", index);
 
     //寻找正文
     let novel = document.getElementsByClassName("NovelText")[0];
