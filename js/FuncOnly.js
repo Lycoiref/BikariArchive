@@ -121,8 +121,8 @@ Setting.Open = function() {
         HobAndClick("input-fontfamily", "Reader.SetFontFamily");
         HobAndClick("input-fontsize", "Reader.SetFontSize");
 
-        function HobAndClick(className, func) {
-            var input = document.querySelector("." + className).children;
+        function HobAndClick(id, func) {
+            var input = document.querySelector("#" + id).children;
             for (let i = 0; i < input.length; i++) {
                 let hob = document.createElement("span");
                 hob.className = "hob";
@@ -141,7 +141,7 @@ Setting.Open = function() {
             for (let i = 0; i < input.length; i++) {
                 input.item(i).className = "";
             }
-            input.item(Number(localStorage.getItem(storage[className]))).className = "active";
+            input.item(Number(localStorage.getItem(storage[id]))).className = "active";
         }
         Setting.Init();
     });

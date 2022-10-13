@@ -332,13 +332,13 @@ div.MainContent .ChapterWrapBox-Top {
 
 div.MainContent .ChapterWrapBox-Bottom {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
-div.MainContent span.LastChapter, span.NextChapter {
+span.LastChapter, span.NextChapter {
     display: block;
-    width: 25%;
-    margin: 16px 36px 16px 36px;
+    width: 33%;
+    margin: 16px 0;
     padding: 16px 0;
     border: 2px solid var(--theme-border-color);
     border-radius: 16px;
@@ -490,8 +490,9 @@ div.input-box {
 
 /* 快捷键 */
 .input-shortcut {
+    flex: 1;
     outline: none;
-    width: 96px;
+    width: 100%;
     margin: 2px auto;
     border: 0;
     font-size: 16px;
@@ -499,7 +500,7 @@ div.input-box {
 }
 
 /* 菜单多选框 */
-.input-theme, .input-layout, .input-fontfamily, .input-fontsize {
+.input-item-3, .input-item-4 {
     flex-grow: 1;
     display: flex;
     justify-content: space-between;
@@ -518,12 +519,12 @@ div.input-box {
     cursor: pointer;
 }
 
-.input-theme li {
-    width: 25%;
+.input-item-3 li {
+    width: 33.333%;
 }
 
-.input-layout li, .input-fontfamily li, .input-fontsize li {
-    width: 33.333%;
+.input-item-4 li {
+    width: 25%;
 }
 
 .input-box li .hob {
