@@ -95,6 +95,10 @@ function RGBSelector(str) {
     });
 }
 
+function PxToNumber(px) {
+    return Number(px.substring(0, px.length - 2));
+}
+
 /* ---------------------------------------------------------------- */
 //设置
 var Setting = new Object;
@@ -230,24 +234,31 @@ Nakami.SetLayout = function(index) {
     const max_width = 32 * 3 + widthList[0] + widthList[1];
     const min_width = 32 * 3 + widthList[0] + widthList[2];
 
-    //根据index选择样式
-    switch(index.toString()) {
-        /* 居中 */case "0":;
-        /* 靠左 */case "1": {
-            nakami.removeChild(mainContent);
-            nakami.appendChild(mainContent);
-            break;
-        }
-        /* 靠右 */case "2": {
-            nakami.removeChild(sideBar);
-            nakami.appendChild(sideBar);
-            break;
-        }
-    }
-
     //响应浏览器尺寸的调整，改变对齐方式
     //内部定义，用于获取局部变量
     Nakami.LayoutChange = function() {
+        //超小屏时，布局不生效
+        if (window.innerWidth < 768) {
+            sideBar.style.order = 0;
+            mainContent.style.order = 1;
+            return;
+        }
+        
+        //根据index选择样式
+        switch(index.toString()) {
+            /* 居中 */case "0":;
+            /* 靠左 */case "1": {
+                sideBar.style.order = 0;
+                mainContent.style.order = 1;
+                break;
+            }
+            /* 靠右 */case "2": {
+                sideBar.style.order = 1;
+                mainContent.style.order = 0;
+                break;
+            }
+        }
+
         switch(index.toString()) {
             /* 居中 */case "0": {
                 if (window.innerWidth > min_width) {
@@ -388,7 +399,7 @@ Reader.SetFontFamily = function(index) {
     localStorage.setItem("FontFamily", index);
 
     //寻找正文
-    let novel = document.getElementsByClassName("NovelText")[0];
+    let novel = document.getElementsByClassName("Novel-Text")[0];
     if (typeof novel !== "undefined") {
         //根据index选择样式
         let family;
@@ -414,7 +425,7 @@ Reader.SetFontSize = function(index) {
     localStorage.setItem("FontSize", index);
 
     //寻找正文
-    let novel = document.getElementsByClassName("NovelText")[0];
+    let novel = document.getElementsByClassName("Novel-Text")[0];
     if (typeof novel !== "undefined") {
         //根据index选择样式
         let size, indent;

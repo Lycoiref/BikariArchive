@@ -27,6 +27,23 @@ Volume = {
             "2005",
         
             "300", "301", "302", "303"
+        ],
+        "Chapter": [
+            "幕前　Limit Code: 047", "Chapter.1", "Chapter.2", "Chapter.3", "Chapter.4",
+            "幕间（一）", "Chapter.5", "Chapter.6", "Chapter.7",
+            "幕间（二）", "Chapter.8", "Chapter.9", "Chapter.10", "Chapter.11",
+            "幕间（三）", "Chapter.12", "Chapter.13", "Chapter.14",
+            "幕间（四）", "Chapter.15", "Chapter.16", "Chapter.17",
+            "幕间（五）", "Chapter.18", "Chapter.19", "Chapter.20",
+        
+            "序章", "第一章", "第二章", "第三章", "第四章", "第五章", "第六章", 
+            "间章（一）", "第七章", 
+            "间章（二）", "第八章", "第九章", "第十章", "第十一章", "第十二章", "第十三章",
+            "间章（三）", "第十四章",
+            "间章（四）", "第十五章", "第十六章", "第十七章", "第十八章", "第十九章", "第二十章",
+            "终章",
+        
+            "序曲", "Movement.1", "Movement.2", "Movement.3"
         ]
     },
 
@@ -60,15 +77,18 @@ $(document).ready(function() {
     order = Volume[novel]["Index"].indexOf(index);
 
     //引入页眉、侧边栏、正文
-    $(".Header").load("../../template/Header.html", HeaderRelease());
-    $(".SideBar").load("../../template/SideBar.html", SideBar.SetSlide(true));
-    $(".MainContent").load("../../template/Chapter.html", function(){
-        //标题
-        document.getElementById("Title").innerHTML = document.title.match("(.*) - 微光茶馆")[1];
+    $(".Header").load("../../template/Header.html", ()=>{HeaderRelease()});
+    $(".SideBar").load("../../template/SideBar.html", ()=>{SideBarShokika()});
+    $(".MainContent").load("../../template/Chapter.html", ()=>{
+        let title = Volume[novel]["Chapter"][order];
+        //网页标题
+        document.title = title + "- 微光茶馆";
+        //正文标题
+        document.getElementById("Title").innerHTML = title;
         //所属卷
         document.getElementById("Volume").innerHTML = "<" + Volume[novel]["VolList"][vol - 1] + ">";
         //引入正文
-        $(".NovelText").load(index + ".txt", function(){
+        $(".Novel-Text").load(index + ".txt", function(){
             //字数统计
             document.getElementById("WordCount").innerHTML = "字数：" + WordCount();
             //设置项初始化
@@ -77,17 +97,17 @@ $(document).ready(function() {
         
         //按钮可用与否
         if (order <= 0) {
-            document.getElementsByClassName("LastChapter")[0].disabled = true;
-            document.getElementsByClassName("LastChapter")[1].style.display = "none";
+            document.getElementsByClassName("Novel-WrapBox-Left")[0].style.visibility = "hidden";
+            document.getElementsByClassName("LastChapter-Bottom")[0].style.display = "none";
         }
         if (order >= Volume[novel]["Index"].length - 1) {
-            document.getElementsByClassName("NextChapter")[0].disabled = true;
-            document.getElementsByClassName("NextChapter")[1].style.display = "none";
+            document.getElementsByClassName("Novel-WrapBox-Right")[0].style.visibility = "hidden";
+            document.getElementsByClassName("NextChapter-Bottom")[0].style.display = "none";
         }
     });
 
     //键盘监听
-    document.addEventListener("keydown", function(event) {
+    document.addEventListener("keydown", (event)=>{
         switch (event.key) {
             case localStorage.getItem("shortcut-LastChapter"):
                 ChapterWrap(0);
@@ -97,7 +117,42 @@ $(document).ready(function() {
                 break;
         }
     });
-})
+});
+
+function SideBarShokika()
+{
+    //侧边栏滑动
+    SideBar.SetSlide(true);
+
+    var header = document.querySelector(".Header");
+    var sideBar = document.querySelector(".SideBar");
+    var Index = document.querySelector("#Index");
+
+    let height = 0;
+    let blocks = sideBar.children;
+    for (let i = 0; i < blocks.length; i++) {
+        if (blocks[i].id != "Index") {
+            height += PxToNumber(getComputedStyle(blocks[i]).height) + 24;
+        }
+    }
+
+    //高度初始化
+    Index.style.height = window.innerHeight - height - PxToNumber(getComputedStyle(header).height) - 32 * 2 + "px";
+
+    //根据浏览器滚动动态调整
+    window.addEventListener("scroll", (event)=>{
+        let offset = window.pageYOffset - PxToNumber(getComputedStyle(header).height);
+        if (offset > 0) offset = 0;
+        Index.style.height = window.innerHeight - height + offset - 32 * 2 + "px";
+    })
+
+    $(".Index-Volume")[0].innerHTML = Volume[novel]["VolList"][vol - 1];
+
+
+    //目录显示
+    Index.style.setProperty("display", "block", "important");
+
+}
 
 function ChapterWrap(type)//章节跳转
 {
@@ -114,7 +169,7 @@ function ChapterWrap(type)//章节跳转
 
 function WordCount()//字数统计
 {
-    var article = document.getElementsByClassName("NovelText")[0];
+    var article = document.getElementsByClassName("Novel-Text")[0];
 
     var lines = article.getElementsByTagName("p");
     var ruby = article.getElementsByTagName("ruby");

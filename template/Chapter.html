@@ -1,19 +1,25 @@
-<div class="NovelTitle">
-    <h2 id="Title" style="float: left;"></h1>
-    <div class="ChapterWrapBox-Top visible-lg-flex visible-md-flex visible-sm-flex">
-        <button type="button" class="LastChapter" onclick="ChapterWrap(0)">上一章</button>
-        <button type="button" class="NextChapter" onclick="ChapterWrap(1)">下一章</button>
+<div class="Content-Header">
+    <div class="Novel-WrapBox-Left" onclick="ChapterWrap(0)">
+        <span class="Novel-WrapBox-Arrow">&lt;</span>
+        <span class="Novel-WrapBox-Text">上一章</span>
     </div>
-    <div class="visible-lg visible-md visible-sm">
-        <span id="WordCount" style="position:relative; top:20px; float:right; font-size:12px;"></span>
-        <span id="Volume" style="position:relative; top:20px; float:right; margin-right:16px; font-size:12px;"></span>
+    <div class="Novel-Title">
+        <h2 id="Title" style="float: left;"></h2>
+        <div class="Novel-Information">
+            <span id="Volume"></span>
+            <span id="WordCount"></span>
+        </div>
+    </div>
+    <div class="Novel-WrapBox-Right" onclick="ChapterWrap(1)">
+        <span class="Novel-WrapBox-Text">下一章</span>
+        <span class="Novel-WrapBox-Arrow">&gt;</span>
     </div>
 </div>
 <hr />
-<article class="NovelText"></article>
+<article class="Novel-Text"></article>
 <article class="ContentExtraArea"></article>
 <hr />
-<div class="ChapterWrapBox-Bottom">
-    <span onclick="ChapterWrap(0)" class="LastChapter" href="javascript::void(0)">上一章</span>
-    <span onclick="ChapterWrap(1)" class="NextChapter" href="javascript::void(0)">下一章</span>
+<div class="Novel-WrapBox-Bottom">
+    <span class="LastChapter-Bottom" onclick="ChapterWrap(0)" >上一章</span>
+    <span class="NextChapter-Bottom" onclick="ChapterWrap(1)">下一章</span>
 </div>
