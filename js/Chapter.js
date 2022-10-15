@@ -133,16 +133,19 @@ function SideBarShokika()
 
     //高度初始化
     let header_height = PxToNumber(getComputedStyle(header).height);
-    ScrollToIndex();
+    IndexEvent();
 
     //根据浏览器滚动动态调整
-    window.addEventListener("scroll", (event)=>{ScrollToIndex()});
+    window.addEventListener("scroll", ()=>{IndexEvent()});
+    window.addEventListener("resize", ()=>{IndexEvent()});
 
-    function ScrollToIndex() {
+    function IndexEvent() {
         if (window.innerWidth < 768) {
+            Index.style.display = "none";
             sideBar.style.height = "auto";
         }
         else {
+            Index.style.display = "flex";
             let offset = window.pageYOffset - header_height;
             if (offset > 0) offset = 0;
             sideBar.style.height = window.innerHeight + offset - 64 + "px";

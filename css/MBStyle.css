@@ -46,7 +46,7 @@ header, section, footer, aside, nav, main, article, figure {
 
 body {
     margin: 0;
-    font-family: 'Microsoft Yahei';
+    font-family: "Verdana", "Arial", "Microsoft Yahei UI", "Microsoft Yahei", "宋体";
     font-size: 16px;
     color: var(--theme-text-color);
     background-image: url("../image/background.jpg");
@@ -201,7 +201,7 @@ inf {
 
 /* 正文侧边目录 */
 #Index {
-    display: flex;
+    display: none;
     flex-direction: column;
     flex: 1;
 }
@@ -371,6 +371,10 @@ li.Chapter {
     white-space: nowrap;
 }
 
+.Novel-Title h2 {
+    line-height: 32px;
+}
+
 .Novel-Information {
     display: flex;
     gap: 16px;
@@ -396,8 +400,6 @@ li.Chapter {
     align-items: center;
     font-weight: bolder;
     color: var(--theme-text-color-light);
-    user-select: none;
-    -webkit-user-select: none;
     cursor: pointer;
 }
 
@@ -411,7 +413,7 @@ li.Chapter {
 .Novel-WrapBox-Text {
     display: block;
     position: relative;
-    top: 5px;
+    top: 4px;
     width: 48px;
     font-size: 16px;
 }
@@ -703,10 +705,6 @@ li.Chapter {
         max-width: none;
         width: 100vw;
         padding: 0 32px;
-    }
-
-    #Index {
-        display: none;
     }
 
     div.MainContent {

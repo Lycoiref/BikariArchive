@@ -238,7 +238,7 @@ Nakami.SetLayout = function(index) {
     //内部定义，用于获取局部变量
     Nakami.LayoutChange = function() {
         //超小屏时，布局不生效
-        if (window.innerWidth < 768) {
+        if (document.body.clientWidth < 768) {
             sideBar.style.order = 0;
             mainContent.style.order = 1;
             return;
@@ -261,7 +261,7 @@ Nakami.SetLayout = function(index) {
 
         switch(index.toString()) {
             /* 居中 */case "0": {
-                if (window.innerWidth > min_width) {
+                if (document.body.clientWidth > min_width) {
                     nakami.style.justifyContent = "center";
                 }
                 else {
@@ -274,7 +274,7 @@ Nakami.SetLayout = function(index) {
                 break;
             }
             /* 靠右 */case "2": {
-                if (window.innerWidth > max_width) {
+                if (document.body.clientWidth > max_width) {
                     nakami.style.justifyContent = "right";
                 }
                 else {
