@@ -147,6 +147,7 @@ inf {
 .Nakami {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     gap: 32px;
     padding: 0 32px;
 }
@@ -167,7 +168,8 @@ inf {
 }
 
 .SideBar-Block {
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     padding: 0;
     border: 1px solid var(--theme-border-color-light);
     border-radius: 16px;
@@ -181,13 +183,14 @@ inf {
     list-style-type: none;
 }
 
-.demo-vertical li a {
+.demo-vertical a {
     display: block;
     padding: 8px 16px;
     color: var(--theme-text-color);
+    white-space: nowrap;
 }
 
-.demo-vertical li a:hover:not(.active) {
+.demo-vertical a:hover:not(.active) {
     background-color: rgb(170, 170, 170);
     color:white;
 }
@@ -201,11 +204,34 @@ inf {
 
 /* 正文侧边目录 */
 #Index {
-    display: none !important;
+    display: none;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+#Index::-webkit-scrollbar {
+    width: 5px;
+}
+
+#Index::-webkit-scrollbar-track {
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+
+#Index::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, .3);
+}
+
+#Index a {
+    padding: 7px 16px;
+    font-size: 14px;
 }
 
 .Index-Volume {
-    padding: 8px 16px;
+    margin: 0 16px 8px 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--theme-border-color);
     font-weight: bolder;
 }
 

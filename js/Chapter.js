@@ -29,7 +29,7 @@ Volume = {
             "300", "301", "302", "303"
         ],
         "Chapter": [
-            "幕前　Limit Code: 047", "Chapter.1", "Chapter.2", "Chapter.3", "Chapter.4",
+            "幕前 Limit Code: 047", "Chapter.1", "Chapter.2", "Chapter.3", "Chapter.4",
             "幕间（一）", "Chapter.5", "Chapter.6", "Chapter.7",
             "幕间（二）", "Chapter.8", "Chapter.9", "Chapter.10", "Chapter.11",
             "幕间（三）", "Chapter.12", "Chapter.13", "Chapter.14",
@@ -55,7 +55,10 @@ Volume = {
             "LINGKO"
         ],
         "Index": [
-            "101", "102"
+            "100", "101"
+        ],
+        "Chapter": [
+            "诞生，双子，修习", "爆炸，叛逃，知晓"
         ]
     }
 };
@@ -76,13 +79,14 @@ $(document).ready(function() {
     while (vol >= 10) vol = Math.trunc(vol / 10);
     order = Volume[novel]["Index"].indexOf(index);
 
+    //网页标题
+    let title = Volume[novel]["Chapter"][order];
+    document.title = title + "- 微光茶馆";
+
     //引入页眉、侧边栏、正文
     $(".Header").load("../../template/Header.html", ()=>{HeaderRelease()});
     $(".SideBar").load("../../template/SideBar.html", ()=>{SideBarShokika()});
     $(".MainContent").load("../../template/Chapter.html", ()=>{
-        let title = Volume[novel]["Chapter"][order];
-        //网页标题
-        document.title = title + "- 微光茶馆";
         //正文标题
         document.getElementById("Title").innerHTML = title;
         //所属卷
@@ -146,12 +150,40 @@ function SideBarShokika()
         Index.style.height = window.innerHeight - height + offset - 32 * 2 + "px";
     })
 
+    //为目录添加卷标题
+    let list = Index.getElementsByTagName("ul")[0];
     $(".Index-Volume")[0].innerHTML = Volume[novel]["VolList"][vol - 1];
 
+    //获取该卷章节序号范围
+    let start = Volume[novel]["Index"].indexOf(String(vol * 100));
+    let end = (vol < Volume[novel]["VolList"].length) ? 
+    (Volume[novel]["Index"].indexOf(String((vol + 1) * 100))) :
+    (Volume[novel]["Index"].length);
+    
+    //添加章节
+    for (let i = start; i < end; i++) {
+        let li = document.createElement("li");
+        let a = document.createElement("a");
+        //章节高亮
+        if (i == order) {
+            a.className = "active";
+        }
+        a.href = "novel_" + Volume[novel]["Index"][i] + ".html";
+        a.innerHTML = Volume[novel]["Chapter"][i];
+        li.appendChild(a);
+        list.appendChild(li);
+    }
+
+    $("#Index").scrollTop((order - start) * 64);
+    console.log();
 
     //目录显示
-    Index.style.setProperty("display", "block", "important");
-
+    if (window.innerWidth < 768) {
+        Index.style.setProperty("display", "none");  
+    }
+    else {
+        Index.style.setProperty("display", "block");   
+    }
 }
 
 function ChapterWrap(type)//章节跳转

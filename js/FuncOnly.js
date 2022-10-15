@@ -299,7 +299,7 @@ SideBar.SetSlide = function(state) {
     let sidebar = document.querySelector(".SideBar");
     switch(state) {
         case true: {
-            document.addEventListener("scroll", function () {
+            window.addEventListener("scroll", function () {
                 let mainHeight = header.scrollHeight;
                 if (window.innerWidth < 768) {
                     sidebar.style.position = "static";
