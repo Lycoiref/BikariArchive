@@ -113,22 +113,14 @@ function SideBarShokika()
     var sideBar = document.querySelector(".SideBar");
     var Index = document.querySelector("#Index");
 
-    let height = 0;
-    let blocks = sideBar.children;
-    for (let i = 0; i < blocks.length; i++) {
-        if (blocks[i].id != "Index") {
-            height += PxToNumber(getComputedStyle(blocks[i]).height) + 24;
-        }
-    }
-
     //高度初始化
-    Index.style.height = window.innerHeight - height - PxToNumber(getComputedStyle(header).height) - 32 * 2 + "px";
+    sideBar.style.height = window.innerHeight - PxToNumber(getComputedStyle(header).height) - 64 + "px";
 
     //根据浏览器滚动动态调整
     window.addEventListener("scroll", (event)=>{
         let offset = window.pageYOffset - PxToNumber(getComputedStyle(header).height);
         if (offset > 0) offset = 0;
-        Index.style.height = window.innerHeight - height + offset - 32 * 2 + "px";
+        sideBar.style.height = window.innerHeight + offset - 64 + "px";
     })
 
     //为目录添加卷标题
@@ -136,16 +128,16 @@ function SideBarShokika()
     $(".Index-Volume")[0].innerHTML = Volume[novel][vol].Name;
     
     //添加章节
+    let base_li = document.createElement("li");
+    base_li.appendChild(document.createElement("a"));
     for (let i = 0; i < Volume[novel][vol].Index.length; i++) {
-        let li = document.createElement("li");
-        let a = document.createElement("a");
-        //章节高亮
+        let li = base_li.cloneNode(true);
+        let a = li.firstChild;
         if (i == order) {
             a.className = "active";
         }
         a.href = "novel_" + Volume[novel][vol].Index[i] + ".html";
         a.innerHTML = Volume[novel][vol].Chapter[i];
-        li.appendChild(a);
         list.appendChild(li);
     }
 

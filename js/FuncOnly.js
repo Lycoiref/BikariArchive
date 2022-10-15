@@ -298,18 +298,15 @@ SideBar.SetSlide = function(state) {
     let header = document.querySelector(".Header");
     let sidebar = document.querySelector(".SideBar");
     switch(state) {
-        case true: {
+        case true: { 
             window.addEventListener("scroll", function () {
                 let mainHeight = header.scrollHeight;
                 if (window.innerWidth < 768) {
                     sidebar.style.position = "static";
                 }
                 else if (window.pageYOffset > mainHeight) {
-                    sidebar.style.position = "relative";
-                    sidebar.style.top = window.pageYOffset - mainHeight + "px";
-                } else {
                     sidebar.style.position = "sticky";
-                    sidebar.style.top = "0px";
+                    sidebar.style.top = 32 + "px";
                 }
             });
             break;
