@@ -160,16 +160,14 @@ inf {
     flex-direction: column;
     gap: 24px;
     position: sticky;
-    top: 96px;
     min-width: 192px;
     max-width: 192px;
-    height: 100%;
     margin: 32px 0 0 0;
 }
 
 .SideBar-Block {
     padding: 0;
-    overflow: auto;
+    overflow: hidden;
     border: 1px solid var(--theme-border-color-light);
     border-radius: 16px;
     background-color: var(--theme-background-color-alpha);
@@ -203,7 +201,7 @@ inf {
 
 /* 正文侧边目录 */
 #Index {
-    display: none;
+    display: flex;
     flex-direction: column;
     flex: 1;
 }
@@ -693,18 +691,22 @@ li.Chapter {
         width: 100vw;
     }
 
-    div.Nakami {
+    .Nakami {
         flex-direction: column;
         gap: 0;
         padding: 0;
     }
 
-    div.SideBar {
+    .SideBar {
         position: static;
         min-width: var(--size-width-min-mobile);
         max-width: none;
         width: 100vw;
         padding: 0 32px;
+    }
+
+    #Index {
+        display: none;
     }
 
     div.MainContent {

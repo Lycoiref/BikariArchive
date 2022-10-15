@@ -113,16 +113,6 @@ function SideBarShokika()
     var sideBar = document.querySelector(".SideBar");
     var Index = document.querySelector("#Index");
 
-    //高度初始化
-    sideBar.style.height = window.innerHeight - PxToNumber(getComputedStyle(header).height) - 64 + "px";
-
-    //根据浏览器滚动动态调整
-    window.addEventListener("scroll", (event)=>{
-        let offset = window.pageYOffset - PxToNumber(getComputedStyle(header).height);
-        if (offset > 0) offset = 0;
-        sideBar.style.height = window.innerHeight + offset - 64 + "px";
-    })
-
     //为目录添加卷标题
     let list = Index.getElementsByTagName("ul")[0];
     $(".Index-Volume")[0].innerHTML = Volume[novel][vol].Name;
@@ -141,12 +131,22 @@ function SideBarShokika()
         list.appendChild(li);
     }
 
-    //目录显示
-    if (window.innerWidth < 768) {
-        Index.style.setProperty("display", "none");  
-    }
-    else {
-        Index.style.setProperty("display", "flex");   
+    //高度初始化
+    let header_height = PxToNumber(getComputedStyle(header).height);
+    ScrollToIndex();
+
+    //根据浏览器滚动动态调整
+    window.addEventListener("scroll", (event)=>{ScrollToIndex()});
+
+    function ScrollToIndex() {
+        if (window.innerWidth < 768) {
+            sideBar.style.height = "auto";
+        }
+        else {
+            let offset = window.pageYOffset - header_height;
+            if (offset > 0) offset = 0;
+            sideBar.style.height = window.innerHeight + offset - 64 + "px";
+        }
     }
 }
 
