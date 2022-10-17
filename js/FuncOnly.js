@@ -7,9 +7,9 @@ const storage = {
 
 //返回顶部
 function BackToTop() {
-    $("html,body").animate(
-        { scrollTop: 0 },
-        { duration: 200, easing: "swing"});
+    document.querySelector('.Header').scrollIntoView({
+        behavior: "smooth"
+    });
 }
 
 //页眉解限
