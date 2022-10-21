@@ -115,7 +115,7 @@ function SideBarShokika()
 
     //为目录添加卷标题
     let list = Index.getElementsByTagName("ul")[0];
-    $(".Index-Volume")[0].innerHTML = Volume[novel][vol].Name;
+    document.querySelector(".Index-Volume").innerHTML = Volume[novel][vol].Name;
     
     //添加章节
     let base_li = document.createElement("li");
@@ -134,6 +134,9 @@ function SideBarShokika()
     //高度初始化
     let header_height = PxToNumber(getComputedStyle(header).height);
     IndexEvent();
+
+    //目录滑动到当前章节处
+    list.getElementsByTagName("li")[Math.max(0, order - 1)].scrollIntoView();
 
     //根据浏览器滚动动态调整
     window.addEventListener("scroll", ()=>{IndexEvent()});

@@ -7,7 +7,7 @@ const storage = {
 
 //返回顶部
 function BackToTop() {
-    document.querySelector('.Header').scrollIntoView({
+    document.querySelector(".Header").scrollIntoView({
         behavior: "smooth"
     });
 }

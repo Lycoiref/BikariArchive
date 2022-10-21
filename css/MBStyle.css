@@ -160,6 +160,7 @@ inf {
     flex-direction: column;
     gap: 24px;
     position: sticky;
+    top: 96px;
     min-width: 192px;
     max-width: 192px;
     margin: 32px 0 0 0;
