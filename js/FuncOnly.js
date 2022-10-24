@@ -95,6 +95,7 @@ function RGBSelector(str) {
     });
 }
 
+//输入px字符串，返回数字
 function PxToNumber(px) {
     return Number(px.substring(0, px.length - 2));
 }
@@ -121,7 +122,7 @@ Setting.Open = function() {
     //加载设置页面
     $(".modal-setting").load(document.location.origin.toString() + "/template/Setting.html", function(){
         HobAndClick("input-layout", "Nakami.SetLayout");
-        HobAndClick("input-theme", "SetTheme", "Theme");
+        HobAndClick("input-theme", "SetTheme");
         HobAndClick("input-fontfamily", "Reader.SetFontFamily");
         HobAndClick("input-fontsize", "Reader.SetFontSize");
 
