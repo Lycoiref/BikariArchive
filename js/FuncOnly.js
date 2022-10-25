@@ -14,7 +14,7 @@ function BackToTop() {
 
 //页眉解限
 function HeaderRelease() {
-    let header = document.querySelector("mb-header");
+    var header = document.querySelector("mb-header");
     header.TopRelease();
 }
 
@@ -294,7 +294,7 @@ var SideBar = new Object;
 
 //滑动
 SideBar.SetSlide = function(state) {
-    var header = document.querySelector(".Header");
+    var header = document.querySelector("mb-header");
     var sidebar = document.querySelector("mb-sidebar");
     
     switch(state) {

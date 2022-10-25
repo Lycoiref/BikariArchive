@@ -19,13 +19,15 @@ $(document).ready(function() {
     title = Volume[novel][vol].Chapter[order];
     document.title = title + "- 微光茶馆";
 
-    //引入页眉、侧边栏、正文
-    $(".Header").load("../../template/Header.html", ()=>{HeaderRelease()});
-    $(".MainContent").load("../../template/Chapter.html", ()=>{MainContentShokika()});
+    //页眉解限
+    HeaderRelease();
 
-    var sidebar = document.querySelector("mb-sidebar");
-    sidebar.type = "volume";
+    //侧边目录，侧边栏滑动
+    document.querySelector("mb-sidebar").type = "volume";
     SideBar.SetSlide(true);
+
+    //引入正文
+    $(".MainContent").load("../../template/Chapter.html", ()=>{MainContentShokika()});
 
     //键盘监听
     document.addEventListener("keydown", (event)=>{

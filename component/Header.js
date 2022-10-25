@@ -52,9 +52,12 @@ class Header extends HTMLElement
         return [];
     }
 
+    Body() {
+        return this.shadowRoot.querySelector(".Header");
+    }
+
     TopRelease() {
-        var Header = this.shadowRoot.querySelector(".Header");
-        Header.position = "static";
+        this.Body().style.position = "static";
     }
 
     /** 生命周期 -- 当元素被添加到文档的时候调用 */

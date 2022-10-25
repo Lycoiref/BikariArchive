@@ -149,7 +149,6 @@ class SideBar extends HTMLElement
 
     //添加侧边目录
     addVolume() {
-        var header = document.querySelector(".Header");
         var sideBar = this.shadowRoot.querySelector(".SideBar");
         var Index = this.shadowRoot.querySelector("#Index");
     
@@ -185,6 +184,7 @@ class SideBar extends HTMLElement
         }
     
         //高度初始化
+        var header = document.querySelector("mb-header").Body();
         let header_height = PxToNumber(getComputedStyle(header).height);
         IndexEvent();
     
