@@ -1,5 +1,10 @@
 $(document).ready(function() {
-    //引入页眉、侧边栏
-    $(".Header").load("../../template/Header.html", HeaderRelease());
-    $(".SideBar").load("../../template/SideBar.html", SideBar.SetSlide(true));
+    //页眉解限
+    HeaderRelease();
+    
+    //侧边栏滑动
+    SideBar.SetSlide(true);
+    
+    //设置项初始化
+    Setting.Init();
 })

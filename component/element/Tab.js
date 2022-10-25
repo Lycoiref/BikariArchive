@@ -50,7 +50,7 @@ class Tab extends HTMLElement
                 }
 
                 .tab-content-area {
-                    height: 120px;
+                    min-height: 64px;
                     padding: 8px 16px;
                     border: 1px solid var(--theme-border-color-light);
                     background-color: var(--theme-background-color);

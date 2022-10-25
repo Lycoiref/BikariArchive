@@ -6,35 +6,20 @@
     <meta name="keywords" content="微光茶馆,Bikari">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <link rel="stylesheet" type="text/css" href="css/MBStyle.css">
-    <script type="module" src="js/MBJavaScript.js"></script>
+    <script type="module" src="/js/MBModule.js"></script>
     <script src="js/jquery-3.6.1.min.js"></script>
     <script src="js/FuncOnly.js"></script>
+    <script src="js/MBJavaScript.js" defer></script>
 </head>
 <body>
 
 <!--页眉 -->
-<header class="Header"> 
-    <div id="BikariTitle">微光茶馆</div>
-</header>
+<mb-header></mb-header>
 
 <!-- 内容 -->
 <div class="Nakami">
     <!-- 侧边栏 -->
-    <div class="SideBar">
-        <div class="SideBar-Block">
-            <ul class="demo-vertical">
-                <li><a href="index.html">主页</a></li>
-                <li><a class="active" href="catalogue.html">目录</a></li>
-                <li><a href="details.html">情报</a></li>
-                <li><a href="javascript:void(0)" onclick="Setting.Open()">设置</a></li>
-            </ul>
-        </div>
-        <div class="SideBar-Block visible-sm visible-md visible-lg">
-            <ul class="demo-vertical">
-                <li><a href="javascript:void(0)" onclick="BackToTop()">返回顶部</a></li>
-            </ul>
-        </div>
-    </div>
+    <mb-sidebar check="目录"></mb-sidebar>
 
     <!-- 正文内容 -->
     <div class="MainContent">

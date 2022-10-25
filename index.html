@@ -4,40 +4,22 @@
     <title>主页 - 微光茶馆</title>
 	<meta charset="UTF-8">
     <meta name="keywords" content="微光茶馆,Bikari">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <link rel="stylesheet" type="text/css" href="css/MBStyle.css">
-    <script type="module" src="js/MBJavaScript.js"></script>
+    <script type="module" src="/js/MBModule.js"></script>
     <script src="js/jquery-3.6.1.min.js"></script>
     <script src="js/FuncOnly.js"></script>
+    <script src="js/MBJavaScript.js" defer></script>
 </head>
 <body>
 
 <!-- 页眉 -->
-<header class="Header"> 
-    <div id="BikariTitle">微光茶馆</div>
-</header>
+<mb-header></mb-header>
 
 <!-- 内容 -->
 <div class="Nakami">
     <!-- 侧边栏 -->
-    <div class="SideBar">
-        <div class="SideBar-Block">
-            <ul class="demo-vertical">
-                <li><a class="active" href="index.html">主页</a></li>
-                <li><a href="catalogue.html">目录</a></li>
-                <li><a href="details.html">情报</a></li>
-                <li><a href="javascript:void(0)" onclick="Setting.Open()">设置</a></li>
-            </ul>
-        </div>
-        <div class="SideBar-Block visible-sm visible-md visible-lg">
-            <ul class="demo-vertical">
-                <li><a href="javascript:void(0)" onclick="BackToTop()">返回顶部</a></li>
-            </ul>
-        </div>
-        <div class="SideBar-Block visible-sm visible-md visible-lg">
-            <img id="QRCode-Site"/>
-        </div>
-    </div>
+    <mb-sidebar check="主页"></mb-sidebar>
 
     <!-- 正文内容 -->
     <div class="MainContent">
@@ -62,7 +44,7 @@
             </div>
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                 <div class="Content-Table text-center" id="Profile">
-                    <img src="image/misaki.png" id="Profile-Icon" />
+                    <img src="image/misaki.png" id="Profile-Icon"/>
                     <table class="Profile-Table" width="100%">
                         <tr>
                             <th width="40%">作者</th>
@@ -102,7 +84,7 @@
                     <span class="Content-h1 Coco-Title">本作外</span><p style="float:right;">（By LINGKO凌）</p>
                     <p class="text-indent-0">
                         这里是继承原文部分设定、在现有情报下重新组织剧情的同人作品，可能与本作产生人设、概念等的冲突，可视作复数现实下发生在假想未来的另一种可能性。<br />
-                        第一章：<a href="text/LINGKO/novel_101.html">诞生，双子，修习</a>
+                        第一章：<a href="text/LINGKO/novel_100.html">诞生，双子，修习</a>
                     </p>
                 </div>
             </div>

@@ -1,71 +1,4 @@
-var Volume = new Array();
-Volume = {
-    "Bikari": [
-        {
-            Name: "第一卷 回廊波动",
-            Path: "Volume.1",
-            Index: [
-                "100", "101", "102", "103", "104",
-                "1001", "105", "106", "107",
-                "1002", "108", "109", "110", "111",
-                "1003", "112", "113", "114",
-                "1004", "115", "116", "117",
-                "1005", "118", "119", "120"
-            ],
-            Chapter: [
-                "幕前 Limit Code: 047", "Chapter.1", "Chapter.2", "Chapter.3", "Chapter.4",
-                "幕间（一）", "Chapter.5", "Chapter.6", "Chapter.7",
-                "幕间（二）", "Chapter.8", "Chapter.9", "Chapter.10", "Chapter.11",
-                "幕间（三）", "Chapter.12", "Chapter.13", "Chapter.14",
-                "幕间（四）", "Chapter.15", "Chapter.16", "Chapter.17",
-                "幕间（五）", "Chapter.18", "Chapter.19", "Chapter.20"
-            ]
-        },
-        {
-            Name: "第二卷 复数现实",
-            Path: "Volume.2",
-            Index: [
-                "200", "201", "202", "203", "204", "205", "206", 
-                "2001", "207", 
-                "2002", "208", "209", "210", "211", "212", "213",
-                "2003", "214",
-                "2004", "215", "216", "217", "218", "219", "220",
-                "2005"
-            ],
-            Chapter: [
-                "序章", "第一章", "第二章", "第三章", "第四章", "第五章", "第六章", 
-                "间章（一）", "第七章", 
-                "间章（二）", "第八章", "第九章", "第十章", "第十一章", "第十二章", "第十三章",
-                "间章（三）", "第十四章",
-                "间章（四）", "第十五章", "第十六章", "第十七章", "第十八章", "第十九章", "第二十章",
-                "终章"
-            ]
-        },
-        {
-            Name: "第三卷 浮海之恋",
-            Path: "Volume.3",
-            Index: [
-                "300", "301", "302", "303"
-            ],
-            Chapter: [
-                "序曲", "Movement.1", "Movement.2", "Movement.3"
-            ]
-        }
-    ],
-
-    "Lingko": [
-        {
-            Name: "第一卷",
-            Path: "LINGKO",
-            Index: [
-                "100", "101"
-            ],
-            Chapter: [
-                "诞生，双子，修习", "爆炸，叛逃，知晓"
-            ]
-        }
-    ]
-};
+import { Volume } from "/data/Volume.js"
 
 var novel = "";//小说名
 var vol = 0;//卷序号
@@ -88,8 +21,11 @@ $(document).ready(function() {
 
     //引入页眉、侧边栏、正文
     $(".Header").load("../../template/Header.html", ()=>{HeaderRelease()});
-    $(".SideBar").load("../../template/SideBar.html", ()=>{SideBarShokika()});
     $(".MainContent").load("../../template/Chapter.html", ()=>{MainContentShokika()});
+
+    var sidebar = document.querySelector("mb-sidebar");
+    sidebar.type = "volume";
+    SideBar.SetSlide(true);
 
     //键盘监听
     document.addEventListener("keydown", (event)=>{
@@ -104,58 +40,6 @@ $(document).ready(function() {
     });
 });
 
-function SideBarShokika()
-{
-    //侧边栏滑动
-    SideBar.SetSlide(true);
-
-    var header = document.querySelector(".Header");
-    var sideBar = document.querySelector(".SideBar");
-    var Index = document.querySelector("#Index");
-
-    //为目录添加卷标题
-    let list = Index.getElementsByTagName("ul")[0];
-    document.querySelector(".Index-Volume").innerHTML = Volume[novel][vol].Name;
-    
-    //添加章节
-    let base_li = document.createElement("li");
-    base_li.appendChild(document.createElement("a"));
-    for (let i = 0; i < Volume[novel][vol].Index.length; i++) {
-        let li = base_li.cloneNode(true);
-        let a = li.firstChild;
-        if (i == order) {
-            a.className = "active";
-        }
-        a.href = "novel_" + Volume[novel][vol].Index[i] + ".html";
-        a.innerHTML = Volume[novel][vol].Chapter[i];
-        list.appendChild(li);
-    }
-
-    //高度初始化
-    let header_height = PxToNumber(getComputedStyle(header).height);
-    IndexEvent();
-
-    //目录滑动到当前章节处
-    list.getElementsByTagName("li")[Math.max(0, order - 1)].scrollIntoView();
-
-    //根据浏览器滚动动态调整
-    window.addEventListener("scroll", ()=>{IndexEvent()});
-    window.addEventListener("resize", ()=>{IndexEvent()});
-
-    function IndexEvent() {
-        if (window.innerWidth < 768) {
-            Index.style.display = "none";
-            sideBar.style.height = "auto";
-        }
-        else {
-            Index.style.display = "flex";
-            let offset = window.pageYOffset - header_height;
-            if (offset > 0) offset = 0;
-            sideBar.style.height = window.innerHeight + offset - 64 + "px";
-        }
-    }
-}
-
 function MainContentShokika()
 {
     //正文标题
@@ -169,16 +53,27 @@ function MainContentShokika()
         //设置项初始化
         Setting.Init();
     });
+
+    var wrap_Left = document.querySelector(".Novel-WrapBox-Left");
+    var wrap_Right = document.querySelector(".Novel-WrapBox-Right");
+    var wrap_Bottom_Last = document.querySelector(".LastChapter-Bottom");
+    var wrap_Bottom_Next = document.querySelector(".NextChapter-Bottom");
     
     //按钮可用与否
     if (order == 0 && vol == 0) {
-        document.getElementsByClassName("Novel-WrapBox-Left")[0].style.visibility = "hidden";
-        document.getElementsByClassName("LastChapter-Bottom")[0].style.display = "none";
+        wrap_Left.style.visibility = "hidden";
+        wrap_Bottom_Last.style.display = "none";
     }
     if (order == Volume[novel][vol].Index.length - 1 && vol + 1 == Volume[novel].length) {
-        document.getElementsByClassName("Novel-WrapBox-Right")[0].style.visibility = "hidden";
-        document.getElementsByClassName("NextChapter-Bottom")[0].style.display = "none";
+        wrap_Right.style.visibility = "hidden";
+        wrap_Bottom_Next.style.display = "none";
     }
+
+    //按钮点击事件
+    wrap_Left.addEventListener("click",()=>{ChapterWrap(0)});
+    wrap_Right.addEventListener("click",()=>{ChapterWrap(1)});
+    wrap_Bottom_Last.addEventListener("click",()=>{ChapterWrap(0)});
+    wrap_Bottom_Next.addEventListener("click",()=>{ChapterWrap(1)});
 }
 
 function ChapterWrap(type)//章节跳转

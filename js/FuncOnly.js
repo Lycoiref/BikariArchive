@@ -14,8 +14,8 @@ function BackToTop() {
 
 //页眉解限
 function HeaderRelease() {
-    let header = document.querySelector(".Header");
-    header.style.position = "relative";
+    let header = document.querySelector("mb-header");
+    header.TopRelease();
 }
 
 //主题颜色
@@ -148,7 +148,10 @@ Setting.Open = function() {
             }
             input.item(Number(localStorage.getItem(storage[id]))).className = "active";
         }
-        Setting.Init();
+        //关闭按钮
+        $(".setting-close").on("click", function() {
+            Setting.Close();
+        });
     });
 
     //不知道为什么但要加载一下
@@ -162,11 +165,6 @@ Setting.Open = function() {
 
 //初始化
 Setting.Init = function() {
-    //关闭按钮
-    $(".setting-close").on("click", function() {
-        Setting.Close();
-    });
-
     //页面布局
     Nakami.Init();
 
@@ -220,7 +218,7 @@ Nakami.SetLayout = function(index) {
 
     //获取侧边栏、主要内容
     var nakami = document.querySelector(".Nakami");
-    var sideBar = document.querySelector(".SideBar");
+    var sideBar = document.querySelector("mb-sidebar");
     var mainContent = document.querySelector(".MainContent");
 
     let widthList = [
@@ -296,16 +294,17 @@ var SideBar = new Object;
 
 //滑动
 SideBar.SetSlide = function(state) {
-    let header = document.querySelector(".Header");
-    let sidebar = document.querySelector(".SideBar");
+    var header = document.querySelector(".Header");
+    var sidebar = document.querySelector("mb-sidebar");
+    
     switch(state) {
         case true: { 
             window.addEventListener("scroll", function () {
                 let mainHeight = header.scrollHeight;
-                if (window.innerWidth < 768) {
+                if (window.innerWidth < 768 || window.pageYOffset < mainHeight) {
                     sidebar.style.position = "static";
                 }
-                else if (window.pageYOffset > mainHeight) {
+                else {
                     sidebar.style.position = "sticky";
                     sidebar.style.top = 32 + "px";
                 }
@@ -451,39 +450,6 @@ Reader.SetFontSize = function(index) {
             lines[i].style.textIndent = indent + "px";
         }
     }
-}
-
-/* ---------------------------------------------------------------- */
-//应付用表单页
-var Form = new Object;
-
-Form.Open = function() {
-    //添加阴影层
-    var shadow = document.createElement("div");
-    shadow.className = "modal-mask";
-    shadow.onclick = function() {
-        Form.Close();
-    };
-    document.body.appendChild(shadow);
-
-    //添加主体
-    var setting = document.createElement("div");
-    setting.className = "modal-form modal-box";
-    document.body.appendChild(setting);
-
-    //加载设置页面
-    $(".modal-form").load(document.location.origin.toString() + "/template/Form.html", function(){
-        Form.Init();
-    });
-}
-
-Form.Init = function() {
-
-}
-
-Form.Close = function() {
-    $(".modal-form").remove();
-    $(".modal-mask").remove();
 }
 
 /* ---------------------------------------------------------------- */
