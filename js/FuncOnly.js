@@ -7,15 +7,9 @@ const storage = {
 
 //返回顶部
 function BackToTop() {
-    document.querySelector(".Header").scrollIntoView({
+    document.querySelector("mb-header").scrollIntoView({
         behavior: "smooth"
     });
-}
-
-//页眉解限
-function HeaderRelease() {
-    var header = document.querySelector("mb-header");
-    header.TopRelease();
 }
 
 //主题颜色

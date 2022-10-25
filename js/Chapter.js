@@ -20,7 +20,8 @@ $(document).ready(function() {
     document.title = title + "- 微光茶馆";
 
     //页眉解限
-    HeaderRelease();
+    var header = document.querySelector("mb-header");
+    header.TopRelease();
 
     //侧边目录，侧边栏滑动
     document.querySelector("mb-sidebar").type = "volume";
